@@ -1,0 +1,233 @@
+body{    /* Esto se aplica a todo, como se va ejecutando de arriba a abajo se pueden cambiar estas cosas para cada elemento que queramos */
+    padding: 0;
+    margin: 0;
+    font-family: "Inter", sans-serif;
+}
+
+#header{
+    width: 100%;
+    height: 8%;  
+    background-color: #4273B3;
+    color: white;  /* esto es para el color del texto */
+    text-align: center;
+    display: flex; /* esto es para que los elementos que esten dentro queden uno al lado del otro en vez de uno arriba del otro */
+    justify-content: space-between; /* separa a los extremos */
+    
+}
+
+a{
+    all: unset;         
+    cursor: pointer; /* estas dos eran para quitarle el diseño que pone por defecto el <a></a> porque es entero feo, y para que al pasar por encima el mouse sea la manito   */
+    display: flex;
+}
+
+#logo{
+    background-image: url(logoMercadito.png);  /* asi se le pone la imagen al div */
+    background-size: 290px 50px;
+    width: 290px;
+    height: 50px;  /* es necesario especificar el tamaño del div y el tamaño de la imagen */
+}
+
+#perfil_salir{
+    display: flex;
+    padding: 10px;  
+    font-size: 20px;
+    gap: 30px;  /* espacio entre los elementos */
+}
+
+.ops_header{
+    display: flex;
+}
+
+#foto_perfil{
+    background-color: orange;
+    width: 35px;
+    height: 35px;
+    border-radius: 50px; /* asi para que el div quede como un circulo */
+    border-style: solid; /* para ponerle un borde normal que es blanco por defecto */
+}
+
+#text_header{
+    padding: 8px;
+}
+
+#icon_salir{
+    height: 100%;
+    padding: 4.7px;
+}
+
+#container{
+    display: grid;
+    grid-template-columns: 1fr 5fr; /* para distribuir la cantidad de espacio que va a ocupar el menu (1fr) y la parte de los productos (5fr) */
+    height: 100%;
+}
+
+/* Desde aca son diseños para el menu (secciones) */
+
+#menu{
+    padding: 1em;
+    padding-left: 0;
+    padding-right: 0;
+    background-color: #f0f0f0;
+    height: 100%;
+}
+
+#menu a{ /* esto se aplica a todos los <a></a> que esten dentro del div id = "menu" */
+    height: 4%;
+    width: 100%;
+}
+
+#secciones{
+    font-weight: bold;
+    padding-left: 1em;
+    margin-bottom: 20px;
+}
+
+.seccion {
+    display: flex;
+    align-items: center;
+    gap: 8px; 
+    padding-left: 1em;
+}
+
+#menu a:hover{ /* el hover es para aplicar el diseño solo cuando el mouse pasa por arriba, por ejemplo aca cuando le pasamos el mouse arriba de una seccion se pone gris */
+    background-color: #b1b2b5;
+}
+
+.seccion div { /* se aplica a todos los div que esten dentro de los div que usen la clase seccion */
+    width: 12px;
+    height: 12px;
+    background-color: #007BFF; 
+    border-radius: 50%; /* circulo */
+}
+
+#menu span{
+    font-weight: bold;
+}
+
+/* Desde aca es la parte de los productos */
+
+#articulos{
+    background-color: white;
+    padding: 1em;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* para que queden 3 articulos por fila */
+}
+
+#articulo{
+    width: 300px;
+}
+
+#articulo:hover .vendedor{
+    background-color: #b1b2b5;
+}
+
+#articulo:hover .nombre_art{    /* estos dos son para que cuando se pase el mouse encima del articulo se pongan gris la parte del vendedor y la informacion */
+    background-color: #b1b2b5;/* si pusiera  solo .nombre_art:hover, se pondria gris solo cuando se pasa el mouse por la parte de la informacion, si se pasara por la imagen no cambiaria nadad*/
+}
+
+.vendedor{
+    background-color: #f0f0f0;
+    display: flex;
+    height: 40px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;  /* para que queden los bordes de arriba mas redondos, pero no tanto como antes porque no queremos un semicirculo :v */
+}
+
+.foto_vendedor{
+    background-color: green;
+    width: 30px;
+    height: 30px;
+    margin: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 50px;
+    border-style: solid;
+    border-color: white;
+}
+
+.nombre_vendedor{
+    margin-top: 12px;
+}
+
+.nombre_art{
+    text-align: center;
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px; /* lo mismo de los bordes pero abajo */
+}
+
+.img_art{
+    background-image: url(patriciopaz.jpg); /* esta foto hay que cambiarla */
+    background-size: 300px 300px;
+    width: 300px;
+    height: 300px;
+}
+
+/* aca es la ventana del login */
+/* no hay mucho que explicar aca creo */
+#login{
+    background-color: #4273B3;
+    padding-top: 180px;
+    height: 500px;
+}
+
+#logo_login{
+    background-image: url(logoMercadito.png);   
+    background-size: 500px 80px;
+    width: 500px;
+    height: 80px;
+    margin: auto;
+    
+}
+
+#container_login{
+    background-color: #1e3c78;
+    width: 30%;
+    margin: auto;
+    margin-top: 25px;
+    padding: 10px;
+    border-radius: 10px;
+    font-size: 12px;
+}
+
+#form{
+    width: 300px;
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+
+
+.label{
+    text-align: left;
+    width: 250px;
+    margin: auto;
+}
+
+input{
+    width: 250px;
+    height: 25px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#login a{
+    width: 165px;
+    margin: auto;
+    margin-top: 10px;
+}
+
+#btn_login{
+    background-color: white;
+    width: 125px;
+    text-align: center;
+    color: black;
+    border-radius: 5px;
+   font-size: 14px;
+   padding: 20px;
+   padding-top: 10px;
+   padding-bottom: 10px;
+}

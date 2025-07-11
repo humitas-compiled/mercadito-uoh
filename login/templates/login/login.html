@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mercadito - Iniciar Sesión</title>
+
+    <!-- Fuente -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- CSS desde carpeta global 'static/css/styles.css' -->
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body id="login">
+    <!-- Logo (opcional) -->
+    <div id="logo_login">
+        <img src="{% static 'images/logoMercadito.png' %}" alt="Logo" style="max-height: 100px;">
+    </div>
+
+    <div id="container_login">
+        <form method="POST">
+            {% csrf_token %}
+            <div id="form">
+                <div class="label">EMAIL</div>
+                <input type="email" name="correo" placeholder="correo@pregrado.uoh.cl" required>
+
+                <div class="label">CONTRASEÑA</div>
+                <input type="password" name="password" placeholder="*********" required>
+            </div>
+
+            <div style="text-align: center;">
+                <button type="submit" id="btn_login">INICIAR SESIÓN</button>
+            </div>
+
+            {% if messages %}
+                <div style="color: red; margin-top: 10px;">
+                    {% for msg in messages %}
+                        <p>{{ msg }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </form>
+    </div>
+
+    <!-- JS desde carpeta global 'static/js/script.js' -->
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
