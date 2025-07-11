@@ -2,7 +2,7 @@
 App web para la compra/venta de productos o servicios entre la comunidad universitaria. 
 
 # Instrucciones de uso
-Tener Python 🧑‍🦲
+Tener Python 🧑‍🦲  
 En la cmd instalar virtualenv para usar en la carpeta matriz del proyecto 
 ```
 pip install virtualenv
@@ -19,7 +19,7 @@ Aceptar usando 'S' y luego volviendo a la cmd, activar el ambiente con el path:
 ```
 .\<name>\Scripts\activate
 ```
-Para confirmar que se activó el ambiente, al ejecutar ```python --version ``` al lado del path aparecerá entre paréntesis el nombre del ambiente.
+Para confirmar que se activó el ambiente, al ejecutar ```python --version ``` al lado del path aparecerá entre paréntesis el nombre del ambiente.  
 Ya con el ambiente listo, usar:
 ```
 code .
