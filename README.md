@@ -9,7 +9,7 @@ pip install virtualenv
 ```
 En la carpeta del proyecto crear un virtualenv con:
 ```
-virtualenv <name>
+virtualenv venv
 ```
 Para activar el virtualenv, debemos activar una opción de Windows. Para ello, abrir **Windows Powershell** como administrador y usar:
 ```
