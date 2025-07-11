@@ -36,7 +36,7 @@ code .
 ```
 ---
 ### 3. Instalar dependencias
-Una vez dentro del editor (o fuera si uno lo prefiere) verificar el ambiente, crear una ventana y usar:
+Una vez dentro del editor (o fuera si uno lo prefiere) verificar el ambiente, crear un terminal y usar:
 ```
 pip install django
 pip install psycopg2
