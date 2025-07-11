@@ -17,7 +17,7 @@ def login_view(request):
 
             if check_password(password, usuario.password):
                 login(request, usuario)
-                return redirect('hola')  #funcion de vista dsp del login
+                return redirect('seccion_compras')  #funcion de vista dsp del login
             else:
                 messages.error(request, "Contraseña incorrecta.")
         except User.DoesNotExist:
@@ -27,7 +27,7 @@ def login_view(request):
 
 @login_required
 def inicio(request):
-    return render(request, 'login/index.html')  # o el template que tú quieras
+    return render(request, 'compras/index.html')  # o el template que tú quieras
 
 def logout_view(request):
     logout(request)
