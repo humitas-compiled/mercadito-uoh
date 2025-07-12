@@ -5,6 +5,7 @@
 <head>
     <title>mercadito</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
 </head>
 
 <body>
@@ -35,7 +36,7 @@
     <div id="container">
         <aside id="menu">
             <div id="secciones">Secciones</div>
-            <a href="{% url 'seccion_compras' %}">
+            <a href="{% url 'compras' %}">
                 <div class="seccion">
                     <div></div>
                     <span>Comprar</span>   
@@ -56,16 +57,23 @@
         </aside>
 
         <article id="articulos">
-            {% for i in "123" %}
+            {% for producto in productos %}
             <div id="articulo">
                 <div class="vendedor">
                     <div class="foto_vendedor"></div>
                     <div class="nombre_vendedor">Tú</div>
                 </div>
-                <div class="img_art"></div>
-                <div class="nombre_art">NOMBRE PRODUCTO $$$</div>
+
+                {% if producto.imagen %}
+                    <img src="{{ producto.imagen.url }}" class="img_art_real" alt="{{ producto.name }}">
+                {% else %}
+                    <div class="img_art"></div>  {# imagen de respaldo por defecto #}
+                {% endif %}
+
+                <div class="nombre_art">{{ producto.name }} ${{ producto.precio }}</div>
             </div>
             {% endfor %}
+
 
             <div id="nuevo-producto">
                 <a href="{% url 'crear_producto' %}">  <!-- Asegúrate que esta URL exista -->

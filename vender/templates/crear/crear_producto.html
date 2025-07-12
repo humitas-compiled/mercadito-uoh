@@ -5,6 +5,7 @@
 <head>
     <title>Mercadito UOH</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
 </head>
 
 <body>
@@ -35,7 +36,7 @@
 <div id="container">
     <aside id="menu">
         <div id="secciones">Secciones</div>
-        <a href="{% url 'seccion_compras' %}">
+        <a href="{% url 'compras' %}">
             <div class="seccion">
                 <div></div>
                 <span>Comprar</span>   
@@ -61,7 +62,7 @@
                 {% csrf_token %}
                 <div class="imagen">
                     <label class="drop-container">
-                        <input type="file" name="imagenes" multiple />
+                        <input type="file" name="imagen" multiple />
                         <span class="drop-text">Añadir Imagen/es</span>
                     </label>
                 </div>
@@ -69,7 +70,7 @@
                     <input type="text" name="nombre" placeholder="Ingrese el nombre del producto" required/>
                 </label>
                 <label>Precio
-                    <input type="text" name="precio" placeholder="Ingrese el precio del producto" required/>
+                    <input type="number" name="precio" placeholder="Ingrese el precio del producto" required/>
                 </label>
                 <label>Descripción
                     <textarea name="descripcion" placeholder="Ingrese la descripción del producto" required></textarea>
@@ -77,21 +78,20 @@
                 <label>Campus
                     <select name="campus" required>
                         <option value="" disabled selected>Seleccione Campus</option>
-                        <option>Campus Rancagua</option>
-                        <option>Campus Colchagua</option>
+                        <option value="rancagua">Campus Rancagua</option>
+                        <option value="colchagua">Campus Colchagua</option>
                     </select>
                 </label>
                 <label>Contacto
-                    <input type="email" name="mail" placeholder="correo@gmail.com" required>
-                    <input type="tel" name="telefono" placeholder="+569..." required/>
+                    <input type="text" name="contacto" placeholder="Correo o teléfono" required />
                 </label>
                 <label>Categoría
                     <select name="categoria" required>
                         <option value="" disabled selected>Seleccione Categoría</option>
-                        <option>Libros</option>
-                        <option>Electrónica</option>
-                        <option>Ropa</option>
-                        <option>Otros</option>
+                        <option value="libros">Libros</option>
+                        <option value="electrónica">Electrónica</option>
+                        <option value="ropa">Ropa</option>
+                        <option value="otros">Otros</option>
                     </select>
                 </label>
                 <button type="submit" class="boton-confirmar">Confirmar</button>

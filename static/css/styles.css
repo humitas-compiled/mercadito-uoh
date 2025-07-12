@@ -1,83 +1,100 @@
-body{    /* Esto se aplica a todo, como se va ejecutando de arriba a abajo se pueden cambiar estas cosas para cada elemento que queramos */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+:root {
+    --color-primario: #4273B3;
+    --color-secundario: #f0f0f0;
+    --color-hover: #b1b2b5;
+    --color-borde-input: #ccc;
+    --color-confirmar: #2c6ecb;
+    --color-confirmar-hover: #204d92;
+    --fuente-principal: "Inter", sans-serif;
+}
+
+body {
     padding: 0;
     margin: 0;
-    font-family: "Inter", sans-serif;
+    font-family: var(--fuente-principal);
 }
 
-#header{
+/* ---------------------------------- Header ---------------------------------- */
+
+#header {
     width: 100%;
-    height: 8%;  
-    background-color: #4273B3;
-    color: white;  /* esto es para el color del texto */
+    height: 8%;
+    background-color: var(--color-primario);
+    color: white;
     text-align: center;
-    display: flex; /* esto es para que los elementos que esten dentro queden uno al lado del otro en vez de uno arriba del otro */
-    justify-content: space-between; /* separa a los extremos */
-    
+    display: flex;
+    justify-content: space-between;
 }
 
-a{
-    all: unset;         
-    cursor: pointer; /* estas dos eran para quitarle el diseño que pone por defecto el <a></a> porque es entero feo, y para que al pasar por encima el mouse sea la manito   */
+a {
+    all: unset;
+    cursor: pointer;
     display: flex;
 }
 
-#logo{
-    background-image: url("../images/logoMercadito.png");  /* asi se le pone la imagen al div */
+#logo {
+    background-image: url("../images/logoMercadito.png");
     background-size: 290px 50px;
     width: 290px;
-    height: 50px;  /* es necesario especificar el tamaño del div y el tamaño de la imagen */
+    height: 50px;
 }
 
-#perfil_salir{
+#perfil_salir {
     display: flex;
-    padding: 10px;  
+    padding: 10px;
     font-size: 20px;
-    gap: 30px;  /* espacio entre los elementos */
+    gap: 30px;
 }
 
-.ops_header{
+.ops_header {
     display: flex;
 }
 
-#foto_perfil{
+#foto_perfil {
     background-color: orange;
     width: 35px;
     height: 35px;
-    border-radius: 50px; /* asi para que el div quede como un circulo */
-    border-style: solid; /* para ponerle un borde normal que es blanco por defecto */
+    border-radius: 50px;
+    border-style: solid;
 }
 
-#text_header{
+#text_header {
     padding: 8px;
 }
 
-#icon_salir{
+#icon_salir {
     height: 100%;
     padding: 4.7px;
 }
 
-#container{
+/* ---------------------------------- Layout ---------------------------------- */
+
+#container {
     display: grid;
-    grid-template-columns: 1fr 5fr; /* para distribuir la cantidad de espacio que va a ocupar el menu (1fr) y la parte de los productos (5fr) */
-    height: 100%;
+    grid-template-columns: 1fr 5fr;
+    min-height: 100vh;
 }
 
-/* Desde aca son diseños para el menu (secciones) */
+/* ---------------------------------- Menú ---------------------------------- */
 
-#menu{
-    padding: 1em;
-    padding-left: 0;
-    padding-right: 0;
-    background-color: #f0f0f0;
-    height: 100%;
+#menu {
+    padding: 1em 0;
+    background-color: var(--color-secundario);
+    min-height: 100vh;  
 }
 
-#menu a{ /* esto se aplica a todos los <a></a> que esten dentro del div id = "menu" */
-    height: 4%;
-    width: 100%;
+#menu a {
+    display: block;     /* mejor que flex si no lo necesitas */
+    padding: 10px 20px;
+    text-decoration: none;
+    color: inherit;
 }
 
-#secciones{
+#secciones {
     font-weight: bold;
     padding-left: 1em;
     margin-bottom: 20px;
@@ -86,151 +103,149 @@ a{
 .seccion {
     display: flex;
     align-items: center;
-    gap: 8px; 
+    gap: 8px;
     padding-left: 1em;
 }
 
-#menu a:hover{ /* el hover es para aplicar el diseño solo cuando el mouse pasa por arriba, por ejemplo aca cuando le pasamos el mouse arriba de una seccion se pone gris */
-    background-color: #b1b2b5;
+#menu a:hover {
+    background-color: var(--color-hover);
 }
 
-.seccion div { /* se aplica a todos los div que esten dentro de los div que usen la clase seccion */
+.seccion div {
     width: 12px;
     height: 12px;
-    background-color: #007BFF; 
-    border-radius: 50%; /* circulo */
+    background-color: #007BFF;
+    border-radius: 50%;
 }
 
-#menu span{
+#menu span {
     font-weight: bold;
 }
 
-/* Desde aca es la parte de los productos */
+/* ---------------------------------- Artículos ---------------------------------- */
 
-#articulos{
+#articulos {
     background-color: white;
     padding: 1em;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr; /* para que queden 3 articulos por fila */
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 1em;
 }
 
-#articulo{
+#articulo {
     width: 300px;
+    transition: transform 0.2s ease;
 }
 
-#articulo:hover .vendedor{
-    background-color: #b1b2b5;
+#articulo:hover {
+    transform: scale(1.02);
 }
 
-#articulo:hover .nombre_art{    /* estos dos son para que cuando se pase el mouse encima del articulo se pongan gris la parte del vendedor y la informacion */
-    background-color: #b1b2b5;/* si pusiera  solo .nombre_art:hover, se pondria gris solo cuando se pasa el mouse por la parte de la informacion, si se pasara por la imagen no cambiaria nadad*/
+#articulo:hover .vendedor,
+#articulo:hover .nombre_art {
+    background-color: var(--color-hover);
 }
 
-.vendedor{
-    background-color: #f0f0f0;
+.vendedor {
+    background-color: var(--color-secundario);
     display: flex;
     height: 40px;
     border-top-right-radius: 5px;
-    border-top-left-radius: 5px;  /* para que queden los bordes de arriba mas redondos, pero no tanto como antes porque no queremos un semicirculo :v */
+    border-top-left-radius: 5px;
 }
 
-.foto_vendedor{
+.foto_vendedor {
     background-color: green;
     width: 30px;
     height: 30px;
-    margin: auto;
-    margin-left: 5px;
-    margin-right: 5px;
+    margin: auto 5px;
     border-radius: 50px;
-    border-style: solid;
-    border-color: white;
+    border: 2px solid white;
 }
 
-.nombre_vendedor{
+.nombre_vendedor {
     margin-top: 12px;
 }
 
-.nombre_art{
+.nombre_art {
     text-align: center;
-    background-color: #f0f0f0;
+    background-color: var(--color-secundario);
     padding: 10px;
     border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px; /* lo mismo de los bordes pero abajo */
+    border-bottom-right-radius: 5px;
 }
 
-.img_art{
-    background-image: url("../images/patriciopaz.jpg"); /* esta foto hay que cambiarla */
-    background-size: 300px 300px;
+/* Mostrar imagen real del producto */
+.img_art_real {
     width: 300px;
     height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
 }
 
-/* aca es la ventana del login */
-/* no hay mucho que explicar aca creo */
-#login{
-    background-color: #4273B3;
+/* ---------------------------------- Login ---------------------------------- */
+
+#login {
+    background-color: var(--color-primario);
     padding-top: 180px;
     height: 500px;
 }
 
-#logo_login{
-    background-image: url("../images/logoMercadito.png");   
+#logo_login {
+    background-image: url("../images/logoMercadito.png");
     background-size: 500px 80px;
     width: 500px;
     height: 80px;
     margin: auto;
-    
 }
 
-#container_login{
+#container_login {
     background-color: #1e3c78;
     width: 30%;
-    margin: auto;
-    margin-top: 25px;
+    margin: 25px auto 0 auto;
     padding: 10px;
     border-radius: 10px;
     font-size: 12px;
 }
 
-#form{
+#form {
     width: 300px;
     text-align: center;
     color: white;
     margin: auto;
 }
 
-
-.label{
+.label {
     text-align: left;
     width: 250px;
     margin: auto;
 }
 
-input{
+input {
     width: 250px;
     height: 25px;
     border-radius: 5px;
     margin-bottom: 10px;
 }
 
-#login a{
+#login a {
     width: 165px;
     margin: auto;
     margin-top: 10px;
 }
 
-#btn_login{
+#btn_login {
     background-color: white;
     width: 125px;
     text-align: center;
     color: black;
     border-radius: 5px;
-   font-size: 14px;
-   padding: 20px;
-   padding-top: 10px;
-   padding-bottom: 10px;
+    font-size: 14px;
+    padding: 10px 20px;
 }
+
+/* ---------------------------------- Crear Producto ---------------------------------- */
 
 .imagen {
     display: flex;
@@ -243,9 +258,9 @@ input{
     border-radius: 10px;
     padding: 40px;
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
     width: 300px;
-    background-color: #f0f0f0;
+    background-color: var(--color-secundario);
     color: #555;
     display: flex;
     flex-direction: column;
@@ -260,6 +275,7 @@ input{
 .drop-container input[type="file"] {
     display: none;
 }
+
 .drop-text {
     font-weight: bold;
     margin-top: 10px;
@@ -269,16 +285,16 @@ input{
     margin-top: 20px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #2c6ecb;
-    color:white;
-    border:none;
+    background-color: var(--color-confirmar);
+    color: white;
+    border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .boton-confirmar:hover {
-    background-color: #204d92;
+    background-color: var(--color-confirmar-hover);
 }
 
 .contenido {
@@ -290,7 +306,7 @@ input{
 .crear-producto {
     display: flex;
     flex-direction: column;
-    gap:15 px
+    gap: 15px;
 }
 
 .crear-producto label {
@@ -299,10 +315,12 @@ input{
     font-weight: bold;
 }
 
-.contenido input, .contenido textarea, .contenido select {
+.contenido input,
+.contenido textarea,
+.contenido select {
     padding: 8px;
     border-radius: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-borde-input);
     font-size: 14px;
 }
 
@@ -310,7 +328,7 @@ input{
     width: 300px;
     height: 300px;
     background-color: #e8f0e8;
-    border: 1px dashed #000000;
+    border: 1px dashed #000;
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -320,6 +338,7 @@ input{
     transition: transform 0.2s, background-color 0.2s;
     cursor: pointer;
 }
+
 #nuevo-producto:hover {
     transform: scale(1.02);
     background-color: #d0ebd4;
@@ -336,12 +355,238 @@ input{
 .crear-icono {
     font-size: 48px;
     font-weight: bold;
-    color:rgb(43, 42, 42);
+    color: #2b2a2a;
     margin-bottom: 10px;
 }
 
 .nombre-articulo {
     font-size: 16px;
     font-weight: bold;
-    color: rgb(43, 42, 42);
+    color: #2b2a2a;
+}
+
+/* ---------------------------------- Ver Producto ---------------------------------- */
+
+#cont_verprod {
+    width: 40em;
+    margin: auto;
+    padding-top: 1em;
+}
+
+#img_producto {
+    background-image: url("../images/patriciopaz.jpg");
+    background-size: 25em 20em;
+    width: 25em;
+    height: 20em;
+    border-radius: 10px;
+    margin: auto;
+}
+
+#cont_verprod p {
+    background-color: #ececec;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#btn-iniciar-chat {
+    margin: auto;
+    height: 4em;
+    width: 13em;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+/* ---------------------------------- Responsive ---------------------------------- */
+
+@media (max-width: 768px) {
+    #container {
+        grid-template-columns: 1fr;
+    }
+
+    #articulos {
+        grid-template-columns: 1fr;
+    }
+
+    #header {
+        flex-direction: column;
+        align-items: center;
+        height: auto;
+        padding: 10px 0;
+    }
+
+    #perfil_salir {
+        flex-direction: column;
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    #logo {
+        margin-bottom: 10px;
+    }
+
+    #nuevo-producto {
+        width: 90%;
+        height: 250px;
+    }
+}
+
+/* CHATS */
+
+#contenido {
+    display: flex;
+    height: calc(100vh - 50px);
+}
+
+#barra-lateral {
+    width: 300px;
+    border-right: 1px solid #ccc;
+    padding: 10px;
+    background-color: #f9f9f9;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+
+#barra-lateral input {
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.chat {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+}
+
+.chat:hover{
+    background-color: #949494;
+}
+
+.chat-info {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.foto-chat {
+    width: 40px;
+    height: 40px;
+    background-color: orange; 
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.texto-chat {
+    flex-grow: 1;
+    min-width: 0;
+}
+
+.nombre-chat {
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.mensaje-chat {
+    font-size: 12px;
+    color: #555;
+}
+
+#principal {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#mensajes {
+    flex-grow: 1;
+    padding: 10px;
+    background-color: #f1f1f1;
+    overflow-y: auto;
+}
+
+.mensaje {
+    max-width: 60%;
+    padding: 8px;
+    margin: 5px;
+    border-radius: 8px;
+    position: relative;
+}
+.recibido {
+    background-color: #ddd;
+    align-self: flex-start;
+    margin-right: 1000px;
+}
+
+.enviado {
+    background-color: #9cd6f4;
+    align-self: flex-end;
+    margin-left: 1000px;
+}
+
+.hora {
+    font-size: 10px;
+    color: #666;
+    margin-left: 5px;
+}
+
+#caja-mensaje {
+    display: flex;
+    border-top: 1px solid #ccc;
+}
+
+#caja-mensaje input {
+    flex-grow: 1;
+    padding: 10px;
+    border: none;
+}
+
+#caja-mensaje button {
+    padding: 10px;
+    background-color: #337ab7;
+    color:white;
+    border:none;
+    cursor: pointer;
+}
+
+#mini-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #e6e6e6;
+    border-bottom: 1px solid #ccc;
+}
+
+#info-mini-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+}
+
+.foto-mini {
+    width: 35px;
+    height: 35px;
+    background-color: orange;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.mini-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#btn-reportar {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+#btn-reportar:hover {
+    background-color: #c9302c;
 }

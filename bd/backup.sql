@@ -298,13 +298,14 @@ ALTER TABLE public.django_session OWNER TO enzo;
 
 CREATE TABLE public.vender_producto (
     id bigint NOT NULL,
-    name character varying(50) NOT NULL,
+    nombre character varying(50) NOT NULL,
     precio integer NOT NULL,
     descripcion text NOT NULL,
     campus character varying(20) NOT NULL,
     contacto character varying(60) NOT NULL,
     categoria character varying(20) NOT NULL,
-    imagen character varying(100)
+    imagen character varying(100),
+    usuario_id integer NOT NULL
 );
 
 
@@ -381,8 +382,8 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+2	pbkdf2_sha256$1000000$uyRjxihPWWmnGmkINWOPdV$GFCMo0eKF1a88KvFJoo201d9Nq0WWBUFP1qstprzvz0=	2025-07-11 22:42:14.59826-04	f	ejemplo			ejemplo@mail.com	f	t	2025-07-10 16:01:18.743767-04
 1	pbkdf2_sha256$1000000$jKCOmfgMKRqOVCj80QjbpW$LLUliqpJCk9bMfFvUamTskruWZw5yuJL8ZRXbgXSlzY=	2025-07-11 14:51:20-04	t	admin1			admin1@mail.com	t	t	2025-07-10 15:26:15-04
-2	pbkdf2_sha256$1000000$uyRjxihPWWmnGmkINWOPdV$GFCMo0eKF1a88KvFJoo201d9Nq0WWBUFP1qstprzvz0=	2025-07-11 16:13:41.007087-04	f	ejemplo			ejemplo@mail.com	f	t	2025-07-10 16:01:18.743767-04
 \.
 
 
@@ -450,7 +451,8 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 16	auth	0011_update_proxy_permissions	2025-07-10 15:22:54.269393-04
 17	auth	0012_alter_user_first_name_max_length	2025-07-10 15:22:54.274696-04
 18	sessions	0001_initial	2025-07-10 15:22:54.285309-04
-19	vender	0001_initial	2025-07-11 16:52:02.313889-04
+20	vender	0001_initial	2025-07-11 21:50:32.888856-04
+21	vender	0002_producto_usuario	2025-07-11 22:11:49.793737-04
 \.
 
 
@@ -461,7 +463,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 ewez77xlgyqnw1ts9o3b4xzxgdmn6qjt	e30:1uZy3m:CDXfVdwV_4pvCf9PYfgQqw3cXBTU4MnfcW9KU_MnOBs	2025-07-24 16:40:02.732937-04
 6mpredclnkzin8ewlazbjv2khsspmx8x	e30:1uZy3n:fXbCIwPErPagITgYxTRC8G75IqRwNgDEBMPWW2-Fuis	2025-07-24 16:40:03.069787-04
-7yl5f3dizez55a2eqgaxzl7417a7iwr9	.eJxVjDsOwjAQBe_iGln-JbEp6TmDtV7v4gCypTipEHeHSCmgfTPzXiLCtpa4dVrinMVZGHH63RLgg-oO8h3qrUlsdV3mJHdFHrTLa8v0vBzu30GBXr71ZD05VslalRh0RkIeiTQDJfCMwU0atcHsVCCjUGlmRWkYnUcTBhbvDxnRORQ:1uaK7p:cSsW9KdCl6whEwuLuHoxe9jsxsCttNRrdYN0VrIXMAc	2025-07-25 16:13:41.012119-04
+nl8hvlgt0cria2gmeaqxkfh0bp3uckx6	.eJxVjDsOwjAQBe_iGln-JbEp6TmDtV7v4gCypTipEHeHSCmgfTPzXiLCtpa4dVrinMVZGHH63RLgg-oO8h3qrUlsdV3mJHdFHrTLa8v0vBzu30GBXr71ZD05VslalRh0RkIeiTQDJfCMwU0atcHsVCCjUGlmRWkYnUcTBhbvDxnRORQ:1uaQBq:B6CLOkhp2WimyrMDiYsSutQklc99jTAL5otS-NBgPeM	2025-07-25 22:42:14.600273-04
 \.
 
 
@@ -469,7 +471,8 @@ ewez77xlgyqnw1ts9o3b4xzxgdmn6qjt	e30:1uZy3m:CDXfVdwV_4pvCf9PYfgQqw3cXBTU4MnfcW9K
 -- Data for Name: vender_producto; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.vender_producto (id, name, precio, descripcion, campus, contacto, categoria, imagen) FROM stdin;
+COPY public.vender_producto (id, nombre, precio, descripcion, campus, contacto, categoria, imagen, usuario_id) FROM stdin;
+4	primer producto	1000	dsdfsdf	rancagua	correo@mish.com	otros	productos/uno.jpg	2
 \.
 
 
@@ -533,14 +536,14 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 7, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: enzo
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 19, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 21, true);
 
 
 --
 -- Name: vender_producto_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.vender_producto_id_seq', 1, false);
+SELECT pg_catalog.setval('public.vender_producto_id_seq', 4, true);
 
 
 --
@@ -779,6 +782,13 @@ CREATE INDEX django_session_session_key_c0390e0f_like ON public.django_session U
 
 
 --
+-- Name: vender_producto_usuario_id_a8c6ec2d; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX vender_producto_usuario_id_a8c6ec2d ON public.vender_producto USING btree (usuario_id);
+
+
+--
 -- Name: auth_group_permissions auth_group_permissio_permission_id_84c5c92e_fk_auth_perm; Type: FK CONSTRAINT; Schema: public; Owner: enzo
 --
 
@@ -848,6 +858,14 @@ ALTER TABLE ONLY public.django_admin_log
 
 ALTER TABLE ONLY public.django_admin_log
     ADD CONSTRAINT django_admin_log_user_id_c564eba6_fk_auth_user_id FOREIGN KEY (user_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
+
+
+--
+-- Name: vender_producto vender_producto_usuario_id_a8c6ec2d_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.vender_producto
+    ADD CONSTRAINT vender_producto_usuario_id_a8c6ec2d_fk_auth_user_id FOREIGN KEY (usuario_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

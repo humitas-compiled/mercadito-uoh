@@ -24,12 +24,14 @@ from vender import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #path('', include('login.urls'))
-    path('', login_views.login_view, name='login'),  #esta línea hace que / cargue el login
-    path('login/', login_views.login_view, name='login'), 
-    path('saludo/', login_views.hola, name='hola'),
-    path('logout/', login_views.logout_view, name='logout'),
-    path('compras/', compras_views.seccion_compras, name='seccion_compras'),
+    path('', include('login.urls')),
+    #path('', login_views.login_view, name='login'),  #esta línea hace que / cargue el login
+    #path('login/', login_views.login_view, name='login'), 
+    #path('saludo/', login_views.hola, name='hola'),
+    #path('logout/', login_views.logout_view, name='logout'),
+    path('compras/', include('compras.urls')),
+    #path('compras/', compras_views.seccion_compras, name='seccion_compras'),
+    #path('producto/', compras_views.ver_producto, name="producto"),
     #path('vender/', vender_views.mis_productos, name='mis_productos')
     path('vender/', include('vender.urls')),
 ] 

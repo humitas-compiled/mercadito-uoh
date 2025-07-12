@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class Producto(models.Model):
     CATEGORIAS = [
@@ -12,13 +13,14 @@ class Producto(models.Model):
         ('colchagua', 'Campus Colchagua'),
     ]
 
-    name = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     precio = models.IntegerField()
     descripcion = models.TextField()
     campus = models.CharField(max_length=20, choices=CAMPUS)
     contacto = models.CharField(max_length=60)
     categoria = models.CharField(max_length=20, choices=CATEGORIAS)
     imagen = models.ImageField(upload_to='productos/', null=True, blank=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name
+        return self.nombre

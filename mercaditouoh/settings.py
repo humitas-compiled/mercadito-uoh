@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'login',
     'compras',
     'vender',
+    'perfil_user'
 ]
 
 MIDDLEWARE = [

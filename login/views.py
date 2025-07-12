@@ -17,7 +17,7 @@ def login_view(request):
 
             if check_password(password, usuario.password):
                 login(request, usuario)
-                return redirect('seccion_compras')  #funcion de vista dsp del login
+                return redirect('compras')  #funcion de vista dsp del login
             else:
                 messages.error(request, "Contraseña incorrecta.")
         except User.DoesNotExist:

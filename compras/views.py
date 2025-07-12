@@ -9,3 +9,6 @@ def seccion_compras(request):
 """@login_required
 def mis_productos(request):
     return render(request, 'vender/templates/vender/mis_productos.html')  # asegúrate de tener esta plantilla"""
+
+def ver_producto(request):
+    return render(request, 'ver-producto/ver_producto.html')
