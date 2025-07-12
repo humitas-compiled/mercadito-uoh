@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'login',
     'compras',
     'vender',
-    'perfil_user',
+    'perfil_user.apps.PerfilUserConfig',
     'chat'
 ]
 
@@ -59,7 +59,7 @@ ROOT_URLCONF = 'mercaditouoh.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

@@ -1,71 +1,19 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html>
 
-<head>
-    <title>Mercadito UOH</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
-</head>
+{% block title %}Mercadito UOH - Comprar{% endblock %}
 
-<body>
-    <div id="header">
-        <div id="logo"></div>
-        <div id="perfil_salir">
-            <div class="ops_header">
-                <div id="foto_perfil"></div>
-                <div id="text_header">{{ request.user.username }}</div> 
-            </div>
-            <div class="ops_header">
-                <a href="{% url 'logout' %}">
-                    <div id="icon_salir">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
-                            <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
-                        </svg>
-                    </div>
-                    <div id="text_header">Salir</div>
-                </a>
-            </div>
+{% block content %}
+<article id="articulos">
+    {% for i in "123456" %}
+    <div id="articulo">
+        <div class="vendedor">
+            <div class="foto_vendedor"></div>
+            <div class="nombre_vendedor">Vendedor</div>
         </div>
+        <div class="img_art"></div>
+        <div class="nombre_art">NOMBRE PRODUCTO $$$</div>
     </div>
-
-    <div id="container">
-        <aside id="menu">
-            <div id="secciones">Secciones</div>
-            <a href="{% url 'compras' %}">
-                <div class="seccion">
-                    <div></div>
-                    <span>Comprar</span>   
-                </div>
-            </a>
-            <a href="{% url 'mis_productos' %}">
-                <div class="seccion">
-                    <div></div> 
-                    <span>Mis productos</span>   
-                </div>
-            </a>
-            <a href="{% url 'mis_chats' %}">
-                <div class="seccion">
-                    <div></div> 
-                    <span>Chats</span>   
-                </div>
-            </a>
-        </aside>
-
-        <article id="articulos">
-            {% for i in "123456" %}
-            <div id="articulo">
-                <div class="vendedor">
-                    <div class="foto_vendedor"></div>
-                    <div class="nombre_vendedor">Vendedor</div>
-                </div>
-                <div class="img_art"></div>
-                <div class="nombre_art">NOMBRE PRODUCTO $$$</div>
-            </div>
-            {% endfor %}
-        </article>
-    </div>
-</body>
-
-</html>
+    {% endfor %}
+</article>
+{% endblock %}

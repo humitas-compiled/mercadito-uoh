@@ -1,26 +1,31 @@
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
+    <meta charset="UTF-8">
     <title>Mercadito UOH</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
 </head>
 <body>
 <div id="header">
-    <div id="logo"></div>
+    <a href= "{% url 'compras' %}">
+        <div id="logo"></div>
+    <a/>
     <div id="perfil_salir">
         <div class="ops_header">
             <div id="foto_perfil"></div>
-            <div id="text_header">Nombre Usuario</div> 
+            <div id="text_header">{{ request.user.username }}</div> 
         </div>
         <div class="ops_header">
-            <a href="login.html">
+            <a href="{% url 'logout' %}">
                 <div id="icon_salir">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                          class="bi bi-box-arrow-right" viewBox="0 0 16 16">
                         <path fill-rule="evenodd"
-                              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z" />
+                              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
                         <path fill-rule="evenodd"
-                              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z" />
+                              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
                     </svg>
                 </div>
                 <div id="text_header">Salir</div>
@@ -28,9 +33,13 @@
         </div>
     </div>
 </div>
+
 <div id="contenido">
     <div id="barra-lateral">
         <input type="search" placeholder="Buscar o crear nuevo mensaje..."/>
+        
+        <!-- Lista de chats -->
+        {% comment %} Reemplaza esto por un for cuando tengas datos de chats {% endcomment %}
         <div class="chat">
             <div class="chat-info">
                 <div class="foto-chat"></div>
@@ -59,6 +68,7 @@
             </div>
         </div>
     </div>
+
     <div id="principal">
         <div id="mini-header">
             <div id="info-mini-header">
@@ -67,6 +77,7 @@
             </div>
             <button id="btn-reportar">Reportar</button>
         </div>
+
         <div id="mensajes">
             <div class="mensaje recibido">Mensaje recibido
                 <span class="hora">12:03</span>
@@ -78,14 +89,13 @@
                 <span class="hora">12:05</span>
             </div>
         </div>
+
         <div id="caja-mensaje">
             <input type="text" placeholder="Escribe un mensaje..."/>
             <button>Enviar</button>
         </div>
     </div>
-
 </div>
-
 
 </body>
 </html>

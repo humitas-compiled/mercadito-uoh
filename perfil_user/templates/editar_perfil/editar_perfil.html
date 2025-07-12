@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Editar Perfil - Mercadito UOH{% endblock %}
+
+{% block content %}
+<div class="contenido">
+    <div class="formulario">
+        <form id="editar_perfil" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+
+            <div id="img_perfil_editar">
+                <label id="drop-container-img-perfil">
+                    <input type="file" name="imagen" accept="image/*">
+                    <span class="drop-text">Añadir Imagen</span>
+                </label>
+            </div>
+
+            <label>Número de Teléfono
+                <input type="tel" name="telefono" placeholder="+569..." value="{{ perfil.telefono }}" required>
+            </label>
+
+            <label>Correo Electrónico
+                <input type="email" name="email" placeholder="correo@ejemplo.cl" value="{{ request.user.email }}">
+            </label>
+
+            <label>Campus
+                <select name="campus" required>
+                    <option value="">Seleccione Campus</option>
+                    <option value="Rancagua" {% if perfil.campus == "Rancagua" %}selected{% endif %}>Campus Rancagua</option>
+                    <option value="Colchagua" {% if perfil.campus == "Colchagua" %}selected{% endif %}>Campus Colchagua</option>
+                </select>
+            </label>
+
+            <button type="submit" class="boton-confirmar">Confirmar Cambios</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

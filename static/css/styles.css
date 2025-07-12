@@ -590,3 +590,73 @@ input {
 #btn-reportar:hover {
     background-color: #c9302c;
 }
+
+#editar_perfil{
+    display: flex;
+    flex-direction: column;
+    gap:15px;
+
+}
+
+#img_perfil_editar{
+    margin: auto;
+}
+
+#drop-container-img-perfil {
+    border: 2px dashed #aaa;
+    border-radius: 10px;
+    padding: 40px;
+    text-align: center;
+    cursor:pointer;
+    width: 150px;
+    height: 150px;
+    background-color: #f0f0f0;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#drop-container-img-perfil:hover {
+    background-color: #e6e5e5;
+}
+
+#drop-container-img-perfil input[type="file"] {
+    display: none;
+}
+
+#perfil{
+    width: 16em;
+    height: 22em;
+    font-size: 25px;
+    margin: auto;
+    padding-top: 3em;
+}
+
+#inf1{
+    display: flex;
+    gap: 20px;
+}
+
+#foto_perfil_grande{
+    background-color: orange;
+    width: 4em;
+    height: 4em;
+    border-radius: 200px;
+}
+
+#nombre_rol{
+    margin-top: 1em;
+}
+
+#nombre_rol a{
+    margin-left: 90%;
+}
+
+#inf2{
+    font-size: 20px;
+    display: block;
+    margin-top: 1em;
+    margin-left: 1em;
+}

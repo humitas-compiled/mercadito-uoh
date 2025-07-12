@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Mercadito UOH{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
+</head>
+<body>
+    {% include "includes/header.html" %}
+
+    <div id="container">
+        <aside id="menu">
+            <div id="secciones">Secciones</div>
+            <a href="{% url 'compras' %}">
+                <div class="seccion">
+                    <div></div>
+                    <span>Comprar</span>
+                </div>
+            </a>
+            <a href="{% url 'mis_productos' %}">
+                <div class="seccion">
+                    <div></div>
+                    <span>Mis productos</span>
+                </div>
+            </a>
+            <a href="{% url 'mis_chats' %}">
+                <div class="seccion">
+                    <div></div>
+                    <span>Chats</span>
+                </div>
+            </a>
+        </aside>
+
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+</body>
+</html>
