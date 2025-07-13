@@ -64,6 +64,24 @@ DATABASES = {
 ```
 **Importante:** Si modificas alguno de estos valores (por ejemplo, el nombre de la base o la contraseña), recuerda actualizar también settings.py para que Django pueda conectarse correctamente.
 
+### 5. Activar base de datos
+Debe verificar que la direccion donde se encuentra PostgreSQL esta añadida al PATH, en el caso de que no lo este, siga los siguientes pasos:
+Buscar la carpeta donde esta instalada PostgreSQL, por ejemplo:
+```makefile
+C:\Program Files\PostgreSQL\15\bin
+```
+Copiar esa ruta y agregarla al PATH del sistema: 
+
+Ir al Panel de control > Sistema > Configuración avanzada del sistema > Variables de entorno.
+Buscar la variable Path en "Variables del sistema" y hacer clic en Editar.
+Agregar una nueva entrada con la ruta de la carpeta bin.
+Aceptar los cambios, cerrar y volver a abrir la terminal.
+
+Para importar la base de datos, en la terminal CMD, ejecutar:
+```bash
+psql -U tu_usuario -d nombre_de_tu_base -f archivo.sql
+```
+
 Para iniciar el proyecto usar en la terminal:
 ```bash
 python manage.py runserver
