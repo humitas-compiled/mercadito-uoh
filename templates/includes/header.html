@@ -1,3 +1,4 @@
+{% load static %}
 <div id="header">
     <a href="{% url 'compras' %}">
         <div id="logo"></div>
@@ -5,7 +6,13 @@
     <div id="perfil_salir">
         <a href="{% url 'ver_perfil' %}">
             <div class="ops_header">
-                <div id="foto_perfil"></div>
+                <div id="foto_perfil">
+                    {% if request.user.perfil.imagen %}
+                        <img src="{{ request.user.perfil.imagen.url }}" alt="Foto de perfil" class="img_header_perfil">
+                    {% else %}
+                        <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_header_perfil">
+                    {% endif %}
+                </div>
                 <div id="text_header">{{ request.user.username }}</div>
             </div>
         </a>

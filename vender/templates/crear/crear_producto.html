@@ -10,9 +10,15 @@
             {% csrf_token %}
             <div class="imagen">
                 <label class="drop-container">
-                    <input type="file" name="imagen" multiple />
+                    <input type="file" id="select_images" name="imagen" multiple accept="image/*" />
                     <span class="drop-text">Añadir Imagen/es</span>
                 </label>
+
+                <div id="preview_container" style="position: relative; width: 100%; max-width: 300px; margin-top: 15px;">
+                    <button type="button" id="prev_btn" style="position: absolute; left: 0; top: 40%; display: none;">←</button>
+                    <img id="image_preview" src="" style="width: 100%; display: none; border: 1px solid #ccc; border-radius: 8px;">
+                    <button type="button" id="next_btn" style="position: absolute; right: 0; top: 40%; display: none;">→</button>
+                </div>
             </div>
 
             <label>Nombre Producto
@@ -51,6 +57,7 @@
 
             <button type="submit" class="boton-confirmar">Confirmar</button>
         </form>
+        <script src="{% static 'js/preview.js' %}"></script>
     </div>
 </div>
 {% endblock %}

@@ -29,4 +29,4 @@ urlpatterns = [
     path('vender/', include('vender.urls')),
     path('chats/', include('chat.urls')),
     path('perfil/', include('perfil_user.urls'))
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

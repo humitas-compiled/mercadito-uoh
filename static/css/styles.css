@@ -53,13 +53,21 @@ a {
 .ops_header {
     display: flex;
 }
-
+/*
 #foto_perfil {
-    background-color: orange;
-    width: 35px;
-    height: 35px;
+    background-color: white;
+    width: 40px;
+    height: 40px;
     border-radius: 50px;
     border-style: solid;
+}
+*/
+.img_header_perfil {
+    width: 45px;
+    height: 45px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #eee;
 }
 
 #text_header {
@@ -259,7 +267,7 @@ input {
     padding: 40px;
     text-align: center;
     cursor: pointer;
-    width: 300px;
+    width: 50px;
     background-color: var(--color-secundario);
     color: #555;
     display: flex;
@@ -639,11 +647,20 @@ input {
     gap: 20px;
 }
 
+/*
 #foto_perfil_grande{
     background-color: orange;
     width: 4em;
     height: 4em;
     border-radius: 200px;
+}
+*/
+.img_perfil_ver_user {
+    width: 4em;
+    height: 4em;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #eee;
 }
 
 #nombre_rol{
@@ -660,3 +677,5 @@ input {
     margin-top: 1em;
     margin-left: 1em;
 }
+
+

@@ -7,6 +7,11 @@
 <div id="perfil">
     <div id="inf1">
         <div id="foto_perfil_grande"></div>
+            {% if request.user.perfil.imagen %}
+                <img src="{{ request.user.perfil.imagen.url }}" alt="Foto de perfil" class="img_perfil_ver_user">
+            {% else %}
+               <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_perfil_ver_user">
+            {% endif %}
         <div id="nombre_rol">
             {{ request.user.username }}<br>Estudiante
             <a href="{% url 'editar_perfil' %}">
@@ -24,7 +29,7 @@
                  class="bi bi-envelope" viewBox="0 0 16 16">
                 <path d="..."/>
             </svg>
-            {{ request.user.email }}
+            {{ request.user.perfil.email }}
         </div>
 
         <div class="contactos">
@@ -32,7 +37,7 @@
                  class="bi bi-telephone" viewBox="0 0 16 16">
                 <path d="..."/>
             </svg>
-            +56 9 9999 9999
+            {{ request.user.perfil.telefono }}
         </div>
 
         <div class="contactos">
@@ -40,15 +45,7 @@
                  class="bi bi-pin-map" viewBox="0 0 16 16">
                 <path d="..."/>
             </svg>
-            Campus Rancagua
-        </div>
-
-        <div class="contactos">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                 class="bi bi-star" viewBox="0 0 16 16">
-                <path d="..."/>
-            </svg>
-            Calificación: ★★★★☆
+            {{ request.user.perfil.campus }}
         </div>
     </div>
 </div>
