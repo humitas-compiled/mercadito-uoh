@@ -1,18 +1,15 @@
 {% load static %}
 <div id="header">
-    <div id="logo-barra">
     <a href="{% url 'compras' %}">
         <div id="logo"></div>
     </a>
-    {% if request.resolver_match.url_name == 'compras' %} <!-- Esto solo se mostrá en la sección de compras (una barra de busquedas)-->
+    {% if request.resolver_match.url_name == 'compras' %}
         <div id="barra-busqueda">
             <form method="get" action="{% url 'compras' %}" class="buscador-compras">
                 <input type="search" name="q" placeholder="Buscar productos..." value="{{ request.GET.q }}">
             </form>
         </div>
     {% endif %}
-    </div>
-
     <div id="perfil_salir">
         <a href="{% url 'ver_perfil' %}">
             <div class="ops_header">
