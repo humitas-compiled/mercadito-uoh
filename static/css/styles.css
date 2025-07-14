@@ -32,13 +32,7 @@ body {
     justify-content: space-between;
 }
 
-<<<<<<< HEAD
 a {  /* para quitarle los valores por defecto a todos los links */
-=======
-
-
-a {
->>>>>>> 73653cdb3dce6236b36b429930126617486e969e
     all: unset;
     cursor: pointer;
     display: flex;
