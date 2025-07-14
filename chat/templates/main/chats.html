@@ -8,7 +8,7 @@
 {% block content %}
 <div id="contenido">
     <div id="barra-lateral">
-        <input type="search" placeholder="Buscar o crear nuevo mensaje..."/>
+        <input type="search" placeholder="Buscar usuario..."/>
 
         {% for chat in chats %}
         <a href="{% url 'mis_chats' chat.id %}" class="chat {% if chat_seleccionado and chat.id == chat_seleccionado.id %}activo{% endif %}">

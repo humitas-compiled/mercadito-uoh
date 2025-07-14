@@ -2,11 +2,20 @@ from vender.models import Producto
 from chat.models import Chat
 from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 # Create your views here.
 
 @login_required
 def seccion_compras(request):
-    productos = Producto.objects.filter(publicado=True).exclude(usuario=request.user)
+    query = request.GET.get('q')
+    if query:
+        productos = Producto.objects.filter(
+            Q(nombre__icontains=query) | Q(descripcion__icontains=query),
+            publicado=True
+        ).exclude(usuario=request.user)
+    else:
+        productos = Producto.objects.filter(publicado=True).exclude(usuario=request.user)
+    
     return render(request, 'compras/index.html', {'productos': productos})
 
 def ver_producto(request, id):
