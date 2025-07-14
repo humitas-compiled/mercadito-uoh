@@ -1,12 +1,12 @@
-{% load static %}
+{% load static %} <!--cargamos el static -->
 <div id="header">
     <a href="{% url 'compras' %}">
-        <div id="logo"></div>
+        <div id="logo"></div> 
     </a>
     {% if request.resolver_match.url_name == 'compras' %}
         <div id="barra-busqueda">
             <form method="get" action="{% url 'compras' %}" class="buscador-compras">
-                <input type="search" name="q" placeholder="Buscar productos..." value="{{ request.GET.q }}">
+                <input type="search" name="q" placeholder="Buscar productos..." value="{{ request.GET.q }}"> <!--barra de busqueda para buscar usuarios-->
             </form>
         </div>
     {% endif %}
@@ -14,17 +14,17 @@
         <a href="{% url 'ver_perfil' %}">
             <div class="ops_header">
                 <div id="foto_perfil">
-                    {% if request.user.perfil.imagen %}
+                    {% if request.user.perfil.imagen %} <!-- si existe imagen dew perfil, la muetra, sino, una default-->
                         <img src="{{ request.user.perfil.imagen.url }}" alt="Foto de perfil" class="img_header_perfil">
                     {% else %}
                         <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_header_perfil">
                     {% endif %}
                 </div>
-                <div id="text_header">{{ request.user.username }}</div>
+                <div id="text_header">{{ request.user.username }}</div> <!--el username del user al lado de la foto-->
             </div>
         </a>
         <div class="ops_header">
-            <a href="{% url 'logout' %}">
+            <a href="{% url 'logout' %}"> <!--para cerrar sesión-->
                 <div id="icon_salir">
                     <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                          class="bi bi-box-arrow-right" viewBox="0 0 16 16">
@@ -39,3 +39,5 @@
         </div>
     </div>
 </div>
+
+<!--se creó este archivo porque se repite en muchas secciones el header, entonvces es más facil hacerlo una vez y solo cargarlo (al igual que la base)-->

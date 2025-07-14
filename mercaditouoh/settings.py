@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'vender',
     'perfil_user.apps.PerfilUserConfig',
     'chat',
-    'reportes',
+    'reportes', #apps instaladas
 ]
 
 MIDDLEWARE = [
@@ -60,7 +60,7 @@ ROOT_URLCONF = 'mercaditouoh.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates'],
+        'DIRS': [BASE_DIR / 'templates'], 
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -78,7 +78,7 @@ WSGI_APPLICATION = 'mercaditouoh.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
-DATABASES = {
+DATABASES = { #acá definimos la bd (IMPORTANTE)
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'mercadito',
@@ -128,7 +128,7 @@ STATIC_URL = '/static/'
 
 # Agrega esta línea para indicar la ruta absoluta de la carpeta global de static
 STATICFILES_DIRS = [
-    BASE_DIR / "static"
+    BASE_DIR / "static" #donde están los statics
 ]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -136,4 +136,4 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_ROOT = BASE_DIR / 'media' #donde se guardan las imagenes
