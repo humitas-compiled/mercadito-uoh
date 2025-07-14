@@ -81,7 +81,11 @@ Para importar la base de datos, en la terminal CMD, ejecutar:
 ```bash
 psql -U tu_usuario -d nombre_de_tu_base -f archivo.sql
 ```
-
+Para asegurar que la base de datos tengo las tablas/filas necesarias, ocupar:
+```bash
+python manage.py makemigrations
+python manage.py migrate
+````
 Para iniciar el proyecto usar en la terminal:
 ```bash
 python manage.py runserver
@@ -90,3 +94,9 @@ Copiar la url local en el navegador y para más comandos usar:
 ```bash
 python manage.py help
 ```
+### 6. Adicional
+Si se desea crear un administrador (super-usuario) usar:
+```bash
+python manage.py createsuperuser
+```
+Dentro del panel de admin (esto es ir a '/admin/' luego de runserver para ir al panel administrador), se pueden crear usuarios.
