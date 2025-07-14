@@ -3,6 +3,12 @@
 
 {% block title %}Mercadito UOH - Comprar{% endblock %}
 
+{% block header_extra %}
+    <form method="get" action="{% url 'compras' %}" class="buscador-compras">
+        <input type="search" name="q" placeholder="Buscar productos..." value="{{ request.GET.q }}">
+    </form>
+{% endblock %}
+
 {% block content %}
 <article id="articulos">
     {% for producto in productos %}

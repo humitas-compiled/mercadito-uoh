@@ -10,8 +10,13 @@
 <div id="contenido">
     <!-- Barra lateral que contiene el buscador de chats y la lista de chats -->
     <div id="barra-lateral">
+<<<<<<< HEAD
         <input type="search" placeholder="Buscar o crear nuevo mensaje..."/>
         <!-- Recorre todos los chats del usuario -->
+=======
+        <input type="search" placeholder="Buscar usuario..."/>
+
+>>>>>>> 73653cdb3dce6236b36b429930126617486e969e
         {% for chat in chats %}
         <a href="{% url 'mis_chats' chat.id %}" class="chat {% if chat_seleccionado and chat.id == chat_seleccionado.id %}activo{% endif %}">
             <div class="chat-info">
