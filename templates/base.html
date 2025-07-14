@@ -1,9 +1,9 @@
 {% load static %}
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Base para los archivos html para llamarla luego, incluye el head y el menú lateral -->
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}Mercadito UOH{% endblock %}</title>
+    <title>{% block title %}Mercadito UOH{% endblock %}</title> 
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
 </head>
@@ -13,9 +13,9 @@
 
     <div id="container">
         {% block sidebar %}
-            <aside id="menu">
+            <aside id="menu"> <!--Menú lateral-->
                 <div id="secciones">Secciones</div>
-                <a href="{% url 'compras' %}">
+                <a href="{% url 'compras' %}"> <!--Cada opción posee un link a su respectiva ventana-->
                     <div class="seccion"><div></div><span>Comprar</span></div>
                 </a>
                 <a href="{% url 'mis_productos' %}">
@@ -27,7 +27,7 @@
             </aside>
         {% endblock %}
 
-        <div class="contenido">
+        <div class="contenido"><!--El contenido respectivo de cada página va aquí-->
             {% block content %}{% endblock %}
         </div>
     </div>
