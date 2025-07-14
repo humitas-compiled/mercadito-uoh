@@ -3,10 +3,11 @@
 
 {% block title %}Mercadito UOH - Ver Producto{% endblock %}
 
+<!-- Contenido principal pagina  -->
 {% block content %}
 <div class="contenido">
     <div class="formulario" style="max-width: 300px; margin: auto;">
-
+        <!-- Muestra la imagen del producto o una por defecto si no tiene -->
         <div class="imagen" style="position: relative; width: 100%; max-width: 300px; margin-bottom: 15px;">
             {% if producto.imagen %}
                 <img src="{{ producto.imagen.url }}" alt="Imagen del producto"
@@ -16,7 +17,7 @@
                      style="width: 100%; border: 1px solid #ccc; border-radius: 8px; display: block;">
             {% endif %}
         </div>
-
+        <!-- Informacion del producto -->
         <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
         <p><strong>Precio:</strong> ${{ producto.precio }}</p>
         <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
@@ -24,9 +25,11 @@
         <p><strong>Contacto:</strong> {{ producto.contacto }}</p>
         <p><strong>Categorías:</strong> {{ producto.categoria }}</p>
 
-        <a href="{% url 'iniciar_chat' producto.id %}"> <!--cambiar url por iniciar_chat y agregar producto.id -->
+        <!-- Boton para iniciar chat sobre el producto-->
+        <a href="{% url 'iniciar_chat' producto.id %}"> 
             <button type="button" id="btn-iniciar-chat">INICIAR CHAT</button>
         </a>
+        <!-- Boton para reportar producto -->
         <div id="container-botton-reporte">
             <a href="{% url 'reportar' 'producto' producto.id %}">
                 <button id="btn-reportar">Reportar</button>
