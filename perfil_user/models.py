@@ -5,10 +5,10 @@ from django.utils import timezone
 #creamos el modelo perfil con esos campos
 class Perfil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    telefono = models.CharField(max_length=20)
-    email = models.EmailField()
+    telefono = models.CharField(max_length=20, blank=True, null=True)
+    email = models.EmailField(blank=True, null=True)
     campus = models.CharField(max_length=100)
-    imagen = models.ImageField(upload_to='perfiles/', default='images\default-user.jpg') #en la bd esto es un string (pero acá será tipo imagen)
+    imagen = models.ImageField(upload_to='perfiles/', default='images/default-user.jpg') #en la bd esto es un string (pero acá será tipo imagen)
     suspension = models.BooleanField(default=False)
     suspendido_hasta = models.DateTimeField(blank=True, null=True)
 

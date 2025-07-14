@@ -4,6 +4,6 @@ from django.contrib.auth.models import User #el User es el modelo por defecto de
 from .models import Perfil #nuestro modelo personalizado de User
 
 @receiver(post_save, sender=User)
-def crear_perfil_usuario(sender, instance, created):
+def crear_perfil_usuario(sender, instance, created, **kwargs):
     if created:
         Perfil.objects.create(user=instance) #si un user es creado, se crea un perfil (instancia) asociado a ese User.

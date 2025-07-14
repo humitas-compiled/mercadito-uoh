@@ -10,7 +10,7 @@ from django.contrib.auth.decorators import login_required
 #creamos la vista editar perfil que necesita el usuario actual y nos lleva a el template editar_perfil
 @login_required
 def editar_perfil(request):
-    perfil = get_object_or_404(Perfil, user=request.user)
+    perfil, creado = Perfil.objects.get_or_create(Perfil, user=request.user)
 
     if request.method == "POST":
         form = PerfilForm(request.POST, request.FILES, instance=perfil)

@@ -23,8 +23,8 @@ urlpatterns = [ #manejo de urls usando include (para no tener que poner cada url
     path('admin/', admin.site.urls),
     path('', include('login.urls')),
     path('compras/', include('compras.urls')),
+    path('perfil/', include('perfil_user.urls')),
     path('vender/', include('vender.urls')),
     path('chats/', include('chat.urls')),
-    path('perfil/', include('perfil_user.urls')),
     path('reporte/', include('reportes.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) #para las imagenes
