@@ -1,14 +1,15 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+# Representa producto en venta
 class Producto(models.Model):
-    CATEGORIAS = [
+    CATEGORIAS = [ #Opciones disponibles en categoria
         ('libros', 'Libros'),
         ('electrónica', 'Electrónica'),
         ('ropa', 'Ropa'),
         ('otros', 'Otros'),
     ]
-    CAMPUS = [
+    CAMPUS = [ #Opciones de campus
         ('rancagua', 'Campus Rancagua'),
         ('colchagua', 'Campus Colchagua'),
     ]
@@ -23,5 +24,5 @@ class Producto(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE)
     publicado = models.BooleanField(default=False)
 
-    def __str__(self):
+    def __str__(self): 
         return self.nombre
