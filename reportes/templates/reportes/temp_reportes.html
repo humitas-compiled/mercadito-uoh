@@ -9,7 +9,7 @@
         <h2>Reportar</h2>
         <form class="crear-producto" method="post">
             {% csrf_token %}
-            {{ form.non_field_errors }}
+            {{ form.non_field_errors }} <!-- maneja errores generales en el form-->
 
             <p><strong>Reportando:</strong> {{ nombre }}</p>
 
@@ -17,17 +17,17 @@
 
             <div class="form-group">
                 {{ form.descripcion.label_tag }}
-                {{ form.descripcion }}
+                {{ form.descripcion }} <!-- descripcion del reporte -->
                 {{ form.descripcion.errors }}
             </div>
 
             <div class="form-group">
                 {{ form.tipo.label_tag }}
-                {{ form.tipo }}
+                {{ form.tipo }} <!-- tipo de reporte -->
                 {{ form.tipo.errors }}
             </div>
 
-            <button type="submit" class="boton-confirmar-reporte">Confirmar</button>
+            <button type="submit" class="boton-confirmar-reporte">Confirmar</button> <!-- boton para confirmar los cambios -->
         </form>
     </div>
 </div>

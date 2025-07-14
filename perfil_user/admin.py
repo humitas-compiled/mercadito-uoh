@@ -3,7 +3,7 @@ from .models import Perfil
 from django.utils import timezone
 from datetime import timedelta
 
-@admin.register(Perfil)  #debe ser un admin 
+@admin.register(Perfil)  #registra una seccion en el panel del admin
 class PerfilAdmin(admin.ModelAdmin):
     list_display = ('user', 'email', 'telefono', 'campus', 'esta_suspendido') #lista a mostrar
     actions = ['suspender_3_dias', 'suspender_7_dias', 'quitar_suspension'] #acciones

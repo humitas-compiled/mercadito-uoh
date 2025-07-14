@@ -1,12 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
-from vender.models import Producto
-from chat.models import Chat
 
 class Reporte(models.Model):
     TIPO_CHOICES = [
         ('producto', 'Producto'),
-        ('chat', 'Chat'),
+        ('chat', 'Chat'), #para la combo box
     ]
 
     usuario_comprador = models.ForeignKey(User, on_delete=models.CASCADE, related_name='reportes_realizados')
@@ -15,6 +13,8 @@ class Reporte(models.Model):
     descripcion = models.TextField()
     tipo = models.CharField(max_length=10, choices=TIPO_CHOICES)
     fecha = models.DateTimeField(auto_now_add=True)
+
+    #datos que van en la base de datos y la lista que verá el admin (algunos datos)
 
     def __str__(self):
         return f"{self.tipo.title()} - {self.nombre}"
