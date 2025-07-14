@@ -7,13 +7,13 @@
 <div id="perfil">
     <div id="inf1">
         <div id="foto_perfil_grande"></div>
-            {% if usuario.perfil.imagen %}
-                <img src="{{ usuario.perfil.imagen.url }}" alt="Foto de perfil" class="img_perfil_ver_user">
+            {% if usuario.perfil.imagen %} <!-- si existe la imagen -->
+                <img src="{{ usuario.perfil.imagen.url }}" alt="Foto de perfil" class="img_perfil_ver_user"> <!-- muestra la imagen -->
             {% else %}
-               <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_perfil_ver_user">
+               <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_perfil_ver_user"> <!-- imagen por default -->
             {% endif %}
         <div id="nombre_rol">
-            {{ usuario.username }}<br>Estudiante
+            {{ usuario.username }}<br>Estudiante <!-- muestra el nombre -->
         </div>
     </div>
 
@@ -23,7 +23,7 @@
                  class="bi bi-envelope" viewBox="0 0 16 16">
                 <path d="..."/>
             </svg>
-            {{ usuario.perfil.email }}
+            {{ usuario.perfil.email }} <!-- muestra el correo -->
         </div>
 
         <div class="contactos">
@@ -31,7 +31,7 @@
                  class="bi bi-telephone" viewBox="0 0 16 16">
                 <path d="..."/>
             </svg>
-            {{ usuario.perfil.telefono }}
+            {{ usuario.perfil.telefono }} <!-- muestra el telefono -->
         </div>
 
         <div class="contactos">
@@ -39,12 +39,8 @@
                  class="bi bi-pin-map" viewBox="0 0 16 16">
                 <path d="..."/>
             </svg>
-            {{ usuario.perfil.campus }}
+            {{ usuario.perfil.campus }} <!-- muestra el campus -->
         </div>
     </div>
-</div>
-
-<div id="p_publicados">
-    <!-- productos de {{usuario.username}}-->
 </div>
 {% endblock %}
