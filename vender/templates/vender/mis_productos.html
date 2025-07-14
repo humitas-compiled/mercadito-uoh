@@ -4,26 +4,27 @@
 {% block title %}Mis Productos - Mercadito UOH{% endblock %}
 
 {% block content %}
-<article id="articulos">
+<article id="articulos"> <!--Los articulos que ha publicado el propio usuario-->
     {% for producto in productos %}
     <a href="{% url 'editar_producto' producto.id %}">
         <div id="articulo">
+            <!--Información del vendedor-->
             <div class="vendedor">
                 <img src="{{ producto.usuario.perfil.imagen.url }}" alt="Foto de perfil" class="img_header_perfil">
                 <div class="nombre_vendedor">Tú</div>
             </div>
-
+            <!--Imagen del producto-->
             {% if producto.imagen %}
                 <img src="{{ producto.imagen.url }}" class="img_art_real" alt="{{ producto.name }}">
             {% else %}
                 <img id="image_preview" src="{% static 'images/imagen-default.jpg' %}" alt="Previsualización">
             {% endif %}
-
+            <!--Información del producto-->
             <div class="nombre_art">{{ producto.name }} ${{ producto.precio }}</div>
         </div>
     </a>
     {% endfor %}
-
+    <!--Opción para crear un nuevo producto-->
     <div id="nuevo-producto">
         <a href="{% url 'crear_producto' %}">
             <div class="crear-icono">+</div>
