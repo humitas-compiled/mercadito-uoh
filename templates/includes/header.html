@@ -1,5 +1,6 @@
 {% load static %}
 <div id="header">
+    <div id="logo-barra">
     <a href="{% url 'compras' %}">
         <div id="logo"></div>
     </a>
@@ -10,6 +11,7 @@
             </form>
         </div>
     {% endif %}
+    </div>
 
     <div id="perfil_salir">
         <a href="{% url 'ver_perfil' %}">
