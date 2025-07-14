@@ -6,33 +6,33 @@
 {% block content %}
 <div class="contenido">
     <div class="formulario">
-        <form id="editar_perfil" method="POST" enctype="multipart/form-data">
+        <form id="editar_perfil" method="POST" enctype="multipart/form-data"> <!--un formulario para la insercion de los datos en la bd-->
             {% csrf_token %}
 
             <div id="img_perfil_editar">
                 <label id="drop-container-img-perfil">
-                    <input type="file" name="imagen" accept="image/*">
+                    <input type="file" name="imagen" accept="image/*"> <!--la imagen-->
                     <span class="drop-text">Añadir Imagen</span>
                 </label>
             </div>
 
             <label>Número de Teléfono
-                <input type="tel" name="telefono" placeholder="+569..." value="{{ perfil.telefono }}" required>
+                <input type="tel" name="telefono" placeholder="+569..." value="{{ perfil.telefono }}"> <!--num de telefono-->
             </label>
 
             <label>Correo Electrónico
-                <input type="email" name="email" placeholder="correo@ejemplo.cl" value="{{ request.user.email }}">
+                <input type="email" name="email" placeholder="correo@ejemplo.cl" value="{{ request.user.email }}"> <!--el correo-->
             </label>
 
             <label>Campus
-                <select name="campus" required>
+                <select name="campus"> <!--el campus como una ComboBox-->
                     <option value="">Seleccione Campus</option>
                     <option value="Rancagua" {% if perfil.campus == "Rancagua" %}selected{% endif %}>Campus Rancagua</option>
                     <option value="Colchagua" {% if perfil.campus == "Colchagua" %}selected{% endif %}>Campus Colchagua</option>
                 </select>
             </label>
 
-            <button type="submit" class="boton-confirmar">Confirmar Cambios</button>
+            <button type="submit" class="boton-confirmar">Confirmar Cambios</button> <!--boton para confirmar los datos-->
         </form>
     </div>
 </div>

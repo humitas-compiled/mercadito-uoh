@@ -13,7 +13,7 @@ class Perfil(models.Model):
     suspendido_hasta = models.DateTimeField(blank=True, null=True)
 
     def esta_suspendido(self):
-        return self.suspendido_hasta and self.suspendido_hasta > timezone.now()
+        return self.suspendido_hasta and self.suspendido_hasta > timezone.now() #retorna el tiempo de suspensión del user (hasta cuando)
 
     def __str__(self):
         return self.user.username
