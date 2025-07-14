@@ -749,3 +749,33 @@ input {
 .boton-confirmar-reporte:hover {
     background-color: var(--color-confirmar-reporte-hover);
 }
+
+/*barra de busqueda*/
+
+.buscador-compras input[type="search"] {
+    width: 100%;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 20px;
+    border: 1px solid #ccc;
+}
+
+.buscador-container {
+    flex-grow: 1;
+    margin: 0 20px;
+}
+
+.buscador-compras {
+    width: 100%;
+}
+
+#container-botton-reporte {
+    position: absolute;
+    bottom: 90%;
+    left: 125%;
+    z-index: 1000;
+}
+
+#barra-busqueda {
+    right: 100px;
+}
