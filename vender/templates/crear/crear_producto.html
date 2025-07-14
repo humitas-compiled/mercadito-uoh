@@ -23,7 +23,7 @@
                 <span class="drop-text">Añadir Imagen</span>
             </label>
             
-
+            <!-- Campos para llenar con información sobre el producto -->
             <label>Nombre Producto
                 <input type="text" name="nombre" placeholder="Ingrese el nombre del producto" required/>
             </label>
@@ -35,7 +35,7 @@
             <label>Descripción
                 <textarea name="descripcion" placeholder="Ingrese la descripción del producto" required></textarea>
             </label>
-
+            <!--comboBox-->
             <label>Campus
                 <select name="campus" required>
                     <option value="" disabled selected>Seleccione Campus</option>
@@ -47,7 +47,7 @@
             <label>Contacto
                 <input type="text" name="contacto" placeholder="Correo o teléfono" required />
             </label>
-
+            <!--otra comboBox-->
             <label>Categoría
                 <select name="categoria" required>
                     <option value="" disabled selected>Seleccione Categoría</option>
@@ -57,7 +57,7 @@
                     <option value="otros">Otros</option>
                 </select>
             </label>
-
+            <!-- Botón para confirmar toda la información y enviar la solicitud de pubicación -->
             <button type="submit" class="boton-confirmar">Confirmar</button>
         </form>
         <script src="{% static 'js/preview.js' %}"></script>

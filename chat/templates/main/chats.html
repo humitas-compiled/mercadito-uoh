@@ -1,19 +1,22 @@
+<!-- Template para la vista de la pagina de chats -->
 {% extends "base.html" %}
 {% load static %}
 
 {% block title %}Chat - Mercadito UOH{% endblock %}
 
 {% block sidebar %}{% endblock %}
-
+<!-- Contenido principal de la pagina -->
 {% block content %}
 <div id="contenido">
+    <!-- Barra lateral que contiene el buscador de chats y la lista de chats -->
     <div id="barra-lateral">
         <input type="search" placeholder="Buscar o crear nuevo mensaje..."/>
-
+        <!-- Recorre todos los chats del usuario -->
         {% for chat in chats %}
         <a href="{% url 'mis_chats' chat.id %}" class="chat {% if chat_seleccionado and chat.id == chat_seleccionado.id %}activo{% endif %}">
             <div class="chat-info">
                 <div class="foto-chat">
+                    <!-- Muestra la foto de perfil del usuario en el chat o una foto por defecto en caso de que el usuario no tenga-->
                     {% if chat.comprador != request.user %}
                         {% with usuario=chat.comprador %}
                             {% if usuario.perfil.imagen %}
@@ -32,6 +35,7 @@
                         {% endwith %}
                     {% endif %}
                 </div>
+                <!-- Muestra el nombre del usuario -->
                 <div class="texto-chat">
                     <div class="nombre-chat">
                         {% if chat.comprador != request.user %}
@@ -41,6 +45,7 @@
                         {% endif %}
                     </div>
                     <div class="mensaje-chat">
+                        <!-- Muestra el ultimo mensaje del chat o un mensaje por defecto -->
                         {% with last_msg=chat.mensajes.last %}
                             {{ last_msg.contenido|default:"No hay mensajes" }}
                         {% endwith %}
@@ -48,13 +53,15 @@
                 </div>
             </div>
         </a>
+        <!-- Si no hay chats, muestra un mensaje indicando que no hay chats aun -->
         {% empty %}
         <p>No tienes chats aún.</p>
         {% endfor %}
     </div>
-
+    <!-- Area principal donde se muestran los mensajes del chat seleccionado -->
     <div id="principal">
         {% if chat_seleccionado %}
+            <!-- Mini-header con informacion del usuario y boton para reportar -->
             <div id="mini-header">
                 <a href="{% url 'ver_perfil_otro' otro_usuario.id %}">
                     <div id="info-mini-header">
@@ -70,11 +77,12 @@
                         </div>
                     </div>
                 </a>
+                <!-- Boton para reportar el chat -->
                 <a href="{% url 'reportar' 'chat' chat_seleccionado.id %}">
                     <button id="btn-reportar">Reportar</button>
                 </a>
             </div>
-
+            <!-- Mensajes del chat abierto -->
             <div id="mensajes">
                 {% for mensaje in chat_seleccionado.mensajes.all %}
                     <div class="mensaje {% if mensaje.autor == request.user %}enviado{% else %}recibido{% endif %}">
@@ -85,7 +93,7 @@
                     <p>No hay mensajes en este chat.</p>
                 {% endfor %}
             </div>
-
+            <!-- Caja para enviar nuevo mensaje en el chat abierto -->
             <div id="caja-mensaje">
                 <form method="post" action="{% url 'enviar_mensaje' chat_seleccionado.id %}">
                     {% csrf_token %}
@@ -94,6 +102,7 @@
                 </form>
             </div>
         {% else %}
+        <!-- Si no hay chats seleccionados, se muestra este mensaje -->
             <div id="principal-vacio">
                 <p>Selecciona un chat para ver los mensajes.</p>
             </div>
