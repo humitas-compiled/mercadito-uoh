@@ -27,9 +27,11 @@
         <a href="{% url 'iniciar_chat' producto.id %}"> <!--cambiar url por iniciar_chat y agregar producto.id -->
             <button type="button" id="btn-iniciar-chat">INICIAR CHAT</button>
         </a>
-        <a href="{% url 'reportar' 'producto' producto.id %}">
-            <button id="btn-reportar">Reportar</button>
-        </a>
+        <div id="container-botton-reporte">
+            <a href="{% url 'reportar' 'producto' producto.id %}">
+                <button id="btn-reportar">Reportar</button>
+            </a>
+        </div>
     </div>
 </div>
 {% endblock %}
