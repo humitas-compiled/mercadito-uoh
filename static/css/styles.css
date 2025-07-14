@@ -758,6 +758,8 @@ input {
     background-color: var(--color-confirmar-reporte-hover);
 }
 
+/* ---------------------------------- Barra de busqueda ---------------------------------- */
+
 .buscador-compras input[type="search"] {
     width: 100%;
     padding: 8px 12px;
@@ -780,4 +782,9 @@ input {
     bottom: 90%;
     left: 125%;
     z-index: 1000;
+}
+
+#logo-barra{
+    display: flex;
+    gap: 2em;
 }

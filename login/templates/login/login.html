@@ -4,18 +4,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Mercadito - Iniciar Sesión</title>
-
-    <!-- Fuente -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-
-    <!-- CSS desde carpeta global 'static/css/styles.css' -->
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
     <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
 </head>
 <body id="login">
-    <!-- Logo (opcional) -->
+    <!-- Logo Mercadito -->
     <div id="logo_login">
         <img src="{% static 'images/logoMercadito.png' %}" alt="Logo" style="max-width:100%;">
     </div>
@@ -23,6 +19,7 @@
     <div id="container_login">
         <form method="POST">
             {% csrf_token %}
+            <!--Campos para llenar con el correo electrónico y la contraseña-->
             <div id="form">
                 <div class="label">EMAIL</div>
                 <input type="email" name="correo" placeholder="correo@pregrado.uoh.cl" required>
@@ -30,11 +27,11 @@
                 <div class="label">CONTRASEÑA</div>
                 <input type="password" name="password" placeholder="*********" required>
             </div>
-
+            <!--Botón para iniciar sesión-->
             <div style="text-align: center;">
                 <button type="submit" id="btn_login">INICIAR SESIÓN</button>
             </div>
-
+            <!--Si los datos son incorrectos entrega la advertencia-->
             {% if messages %}
                 <div style="color: red; margin-top: 10px;">
                     {% for msg in messages %}
