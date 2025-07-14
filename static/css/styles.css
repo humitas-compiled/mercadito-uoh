@@ -1,12 +1,8 @@
-*, *::before, *::after {
+*, *::before, *::after {  /* valores globales por defecto */
     box-sizing: border-box;
 }
 
-/*hola hice un cambio ekisde*/
-/*hola hice otro cambio ekisde*/
-
-
-:root {
+:root {  /* valores predeterminados para llamar luego */
     --color-primario: #4273B3;
     --color-secundario: #f0f0f0;
     --color-hover: #b1b2b5;
@@ -21,7 +17,7 @@
 body {
     padding: 0;
     margin: 0;
-    font-family: var(--fuente-principal);
+    font-family: var(--fuente-principal); 
 }
 
 /* ---------------------------------- Header ---------------------------------- */
@@ -36,7 +32,7 @@ body {
     justify-content: space-between;
 }
 
-a {
+a {  /* para quitarle los valores por defecto a todos los links */
     all: unset;
     cursor: pointer;
     display: flex;
@@ -61,15 +57,7 @@ a {
 .ops_header {
     display: flex;
 }
-/*
-#foto_perfil {
-    background-color: white;
-    width: 40px;
-    height: 40px;
-    border-radius: 50px;
-    border-style: solid;
-}
-*/
+
 .img_header_perfil {
     width: 45px;
     height: 45px;
@@ -91,7 +79,7 @@ a {
 
 #container {
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 1fr 5fr;  /*distribución 1 a 5 para el menu y el resto de contenido*/
     min-height: 100vh;
 }
 
@@ -104,7 +92,7 @@ a {
 }
 
 #menu a {
-    display: block;     /* mejor que flex si no lo necesitas */
+    display: block; 
     padding: 10px 20px;
     text-decoration: none;
     color: inherit;
@@ -124,7 +112,7 @@ a {
 }
 
 #menu a:hover {
-    background-color: var(--color-hover);
+    background-color: var(--color-hover); /* para darle efecto al pasar con el mouse por encima de cada opción */
 }
 
 .seccion div {
@@ -145,7 +133,7 @@ a {
     padding: 1em;
     height: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr; /* para que quepen tres articulos en cada fila */
     gap: 1em;
 }
 
@@ -160,7 +148,7 @@ a {
 
 #articulo:hover .vendedor,
 #articulo:hover .nombre_art {
-    background-color: var(--color-hover);
+    background-color: var(--color-hover); /* efecto al pasar por encima de cada articulo */
 }
 
 .vendedor {
@@ -192,7 +180,7 @@ a {
     border-bottom-right-radius: 5px;
 }
 
-/* Mostrar imagen real del producto */
+/* mostrar imagen real del producto */
 .img_art_real {
     width: 300px;
     height: 300px;
@@ -273,7 +261,7 @@ input {
     margin-bottom: 20px;
 }
 
-/* Contenedor de navegación + imagen */
+/* contenedor de navegación + imagen */
 .preview-wrapper {
     display: flex;
     align-items: center;
@@ -281,7 +269,7 @@ input {
     gap: 10px;
 }
 
-/* Botones ← → */
+/* botones */
 #prev_btn,
 #next_btn {
     background-color: rgba(0, 0, 0, 0.5);
@@ -298,7 +286,7 @@ input {
     justify-content: center;
 }
 
-/* Caja fija para la imagen */
+/* caja fija para la imagen */
 .preview-box {
     width: 300px;
     height: 200px;
@@ -595,7 +583,7 @@ input {
     padding: 15px;
     gap: 10px;
     box-sizing: border-box;
-    width: 100%; /* asegura que ocupe todo el ancho disponible */
+    width: 100%; /* para que ocupe todo el ancho disponible */
 }
 
 #caja-mensaje form {
@@ -722,14 +710,7 @@ input {
     gap: 20px;
 }
 
-/*
-#foto_perfil_grande{
-    background-color: orange;
-    width: 4em;
-    height: 4em;
-    border-radius: 200px;
-}
-*/
+
 .img_perfil_ver_user {
     width: 4em;
     height: 4em;
