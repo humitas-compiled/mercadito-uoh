@@ -5,15 +5,31 @@
 
 {% block content %}
 <article id="articulos">
-    {% for i in "123456" %}
-    <div id="articulo">
-        <div class="vendedor">
-            <div class="foto_vendedor"></div>
-            <div class="nombre_vendedor">Vendedor</div>
+    {% for producto in productos %}
+    <a href="{% url 'ver_producto' producto.id %}" class="producto-link">
+        <div id="articulo">
+            <div class="vendedor">
+                <div id="foto_perfil">
+                    {% if producto.usuario.perfil.imagen %}
+                        <img src="{{ producto.usuario.perfil.imagen.url }}" alt="Foto de perfil" class="img_header_perfil">
+                    {% else %}
+                        <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_header_perfil">
+                    {% endif %}
+                </div>
+                <div class="nombre_vendedor">{{ producto.usuario.username }}</div>
+            </div>
+
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" class="img_art_real" alt="{{ producto.nombre }}">
+            {% else %}
+                <div class="img_art"></div>
+            {% endif %}
+
+            <div class="nombre_art">{{ producto.nombre }} ${{ producto.precio }}</div>
         </div>
-        <div class="img_art"></div>
-        <div class="nombre_art">NOMBRE PRODUCTO $$$</div>
-    </div>
+    </a>
+    {% empty %}
+        <p>No hay productos disponibles en este momento.</p>
     {% endfor %}
 </article>
 {% endblock %}

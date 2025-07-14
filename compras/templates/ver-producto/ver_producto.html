@@ -1,55 +1,35 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static %}
 
-<head>
-    <title>Mercadito UOH</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
-    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
-</head>
+{% block title %}Mercadito UOH - Ver Producto{% endblock %}
 
-<body>
-    <div id="head"></div>
-    <script src="main.js"></script>
+{% block content %}
+<div class="contenido">
+    <div class="formulario" style="max-width: 300px; margin: auto;">
 
-    <div id="container"> <!-- Dentro de esto esta todo lo que esta debajo del header -->
-        <aside id="menu"> <!-- las secciones, lo que esta a la izquierda -->
-            <div id="secciones">Secciones</div>
-            <a href='index.html'>
-                <div class="seccion">
-                    <div></div> <!-- Esto es para hacer el circulo azul con el css -->
-                    <span>Comprar</span>   
-                </div>
-            </a>
-            <a href='misproductos.html'> <!-- Y se repite lo mismo pa hacer mas secciones -->
-                <div class="seccion">
-                    <div></div> 
-                    <span>Mis productos</span>   
-                </div>
-            </a>
-            <a href='chats.html'> <!-- aca se pone el # porque todavia no hacemos los chats -->
-                <div class="seccion">
-                    <div></div> 
-                    <span>Chats</span>   
-                </div>
-            </a>
-        </aside>
-        <div id="cont_verprod">
-            <div id="ver_producto">
-                
-                    <div id="img_producto"></div>
-                    <p>Nombre Producto</p>
-                    <p>Precio: $$$$</p>
-                    <p>Descripcion: Lorem ipsum dolor sit amet consectetur, adipisicing elit. Non et illo repellat cum modi molestiae error tempora, dolor pariatur veritatis incidunt veniam. Sequi magnam hic eligendi eveniet, laborum veniam odio!</p>
-                    <p>Campus: Rancagua</p>
-                    <p>Contacto: +56 9 9999 9999</p>
-                    <p>Categorias: C1, C2</p>
-                    <a href="#">
-                    <button type="submit" id="btn-iniciar-chat">INICIAR CHAT</button>
-                    </a>
-                
-            </div>
+        <div class="imagen" style="position: relative; width: 100%; max-width: 300px; margin-bottom: 15px;">
+            {% if producto.imagen %}
+                <img src="{{ producto.imagen.url }}" alt="Imagen del producto"
+                     style="width: 100%; border: 1px solid #ccc; border-radius: 8px; display: block;">
+            {% else %}
+                <img src="{% static 'images/imagen-default.jpg' %}" alt="Imagen por defecto"
+                     style="width: 100%; border: 1px solid #ccc; border-radius: 8px; display: block;">
+            {% endif %}
         </div>
+
+        <p><strong>Nombre:</strong> {{ producto.nombre }}</p>
+        <p><strong>Precio:</strong> ${{ producto.precio }}</p>
+        <p><strong>Descripción:</strong> {{ producto.descripcion }}</p>
+        <p><strong>Campus:</strong> {{ producto.campus }}</p>
+        <p><strong>Contacto:</strong> {{ producto.contacto }}</p>
+        <p><strong>Categorías:</strong> {{ producto.categoria }}</p>
+
+        <a href="{% url 'iniciar_chat' producto.id %}"> <!--cambiar url por iniciar_chat y agregar producto.id -->
+            <button type="button" id="btn-iniciar-chat">INICIAR CHAT</button>
+        </a>
+        <a href="{% url 'reportar' 'producto' producto.id %}">
+            <button id="btn-reportar">Reportar</button>
+        </a>
     </div>
-</body>
-
-
-</html>
+</div>
+{% endblock %}

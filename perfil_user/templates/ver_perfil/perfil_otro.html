@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Perfil de {{ usuario.username }}{% endblock %}
+
+{% block content %}
+<div id="perfil">
+    <div id="inf1">
+        <div id="foto_perfil_grande"></div>
+            {% if usuario.perfil.imagen %}
+                <img src="{{ usuario.perfil.imagen.url }}" alt="Foto de perfil" class="img_perfil_ver_user">
+            {% else %}
+               <img src="{% static 'images/default-user.jpg' %}" alt="Default" class="img_perfil_ver_user">
+            {% endif %}
+        <div id="nombre_rol">
+            {{ usuario.username }}<br>Estudiante
+        </div>
+    </div>
+
+    <div id="inf2">
+        <div class="contactos">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                 class="bi bi-envelope" viewBox="0 0 16 16">
+                <path d="..."/>
+            </svg>
+            {{ usuario.perfil.email }}
+        </div>
+
+        <div class="contactos">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                 class="bi bi-telephone" viewBox="0 0 16 16">
+                <path d="..."/>
+            </svg>
+            {{ usuario.perfil.telefono }}
+        </div>
+
+        <div class="contactos">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                 class="bi bi-pin-map" viewBox="0 0 16 16">
+                <path d="..."/>
+            </svg>
+            {{ usuario.perfil.campus }}
+        </div>
+    </div>
+</div>
+
+<div id="p_publicados">
+    <!-- productos de {{usuario.username}}-->
+</div>
+{% endblock %}

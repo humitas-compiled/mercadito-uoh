@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.models import User
 from .models import Perfil
 from .forms import PerfilForm
 from django.contrib.auth.decorators import login_required
@@ -28,3 +29,14 @@ def ver_perfil(request):
         'perfil': perfil
     }
     return render(request, 'ver_perfil/perfil.html', context)
+
+@login_required
+def ver_perfil_otro(request, user_id):
+    usuario = get_object_or_404(User, id=user_id)
+    perfil = get_object_or_404(Perfil, user=usuario)
+
+    context = {
+        'usuario': usuario,
+        'perfil': perfil,
+    }
+    return render(request, 'ver_perfil/perfil_otro.html', context)

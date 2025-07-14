@@ -1,101 +1,104 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Mercadito UOH</title>
-    <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
-    <link rel="icon" href="{% static 'images/icon.ico' %}" type="image/x-icon">
-</head>
-<body>
-<div id="header">
-    <a href= "{% url 'compras' %}">
-        <div id="logo"></div>
-    <a/>
-    <div id="perfil_salir">
-        <div class="ops_header">
-            <div id="foto_perfil"></div>
-            <div id="text_header">{{ request.user.username }}</div> 
-        </div>
-        <div class="ops_header">
-            <a href="{% url 'logout' %}">
-                <div id="icon_salir">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
-                         class="bi bi-box-arrow-right" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd"
-                              d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
-                        <path fill-rule="evenodd"
-                              d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
-                    </svg>
-                </div>
-                <div id="text_header">Salir</div>
-            </a>
-        </div>
-    </div>
-</div>
 
+{% block title %}Chat - Mercadito UOH{% endblock %}
+
+{% block sidebar %}{% endblock %}
+
+{% block content %}
 <div id="contenido">
     <div id="barra-lateral">
         <input type="search" placeholder="Buscar o crear nuevo mensaje..."/>
-        
-        <!-- Lista de chats -->
-        {% comment %} Reemplaza esto por un for cuando tengas datos de chats {% endcomment %}
-        <div class="chat">
+
+        {% for chat in chats %}
+        <a href="{% url 'mis_chats' chat.id %}" class="chat {% if chat_seleccionado and chat.id == chat_seleccionado.id %}activo{% endif %}">
             <div class="chat-info">
-                <div class="foto-chat"></div>
+                <div class="foto-chat">
+                    {% if chat.comprador != request.user %}
+                        {% with usuario=chat.comprador %}
+                            {% if usuario.perfil.imagen %}
+                                <img src="{{ usuario.perfil.imagen.url }}" alt="Foto de perfil" style="width:40px; height:40px; border-radius:50%;">
+                            {% else %}
+                                <img src="{% static 'images/default-user.jpg' %}" alt="Default" style="width:40px; height:40px; border-radius:50%;">
+                            {% endif %}
+                        {% endwith %}
+                    {% else %}
+                        {% with usuario=chat.vendedor %}
+                            {% if usuario.perfil.imagen %}
+                                <img src="{{ usuario.perfil.imagen.url }}" alt="Foto de perfil" style="width:40px; height:40px; border-radius:50%;">
+                            {% else %}
+                                <img src="{% static 'images/default-user.jpg' %}" alt="Default" style="width:40px; height:40px; border-radius:50%;">
+                            {% endif %}
+                        {% endwith %}
+                    {% endif %}
+                </div>
                 <div class="texto-chat">
-                    <div class="nombre-chat">Usuario</div>
-                    <div class="mensaje-chat">Mensaje...</div>
+                    <div class="nombre-chat">
+                        {% if chat.comprador != request.user %}
+                            {{ chat.comprador.username }}
+                        {% else %}
+                            {{ chat.vendedor.username }}
+                        {% endif %}
+                    </div>
+                    <div class="mensaje-chat">
+                        {% with last_msg=chat.mensajes.last %}
+                            {{ last_msg.contenido|default:"No hay mensajes" }}
+                        {% endwith %}
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="chat">
-            <div class="chat-info">
-                <div class="foto-chat"></div>
-                <div class="texto-chat">
-                    <div class="nombre-chat">Usuario</div>
-                    <div class="mensaje-chat">Mensaje...</div>
-                </div>
-            </div>
-        </div>
-        <div class="chat">
-            <div class="chat-info">
-                <div class="foto-chat"></div>
-                <div class="texto-chat">
-                    <div class="nombre-chat">Usuario</div>
-                    <div class="mensaje-chat">Mensaje...</div>
-                </div>
-            </div>
-        </div>
+        </a>
+        {% empty %}
+        <p>No tienes chats aún.</p>
+        {% endfor %}
     </div>
 
     <div id="principal">
-        <div id="mini-header">
-            <div id="info-mini-header">
-                <div class="foto-mini"></div>
-                <div class="nombre-mini">Usuario</div>
+        {% if chat_seleccionado %}
+            <div id="mini-header">
+                <a href="{% url 'ver_perfil_otro' otro_usuario.id %}">
+                    <div id="info-mini-header">
+                        <div class="foto-mini">
+                            {% if otro_usuario.perfil.imagen %}
+                                <img src="{{ otro_usuario.perfil.imagen.url }}" alt="Foto de perfil" style="width:42px; height:42px; border-radius:50%;">
+                            {% else %}
+                                <img src="{% static 'images/default-user.jpg' %}" alt="Default" style="width:42px; height:42px; border-radius:50%;">
+                            {% endif %}
+                        </div>
+                        <div class="nombre-mini">
+                            {{ otro_usuario.username }}
+                        </div>
+                    </div>
+                </a>
+                <a href="{% url 'reportar' 'chat' chat_seleccionado.id %}">
+                    <button id="btn-reportar">Reportar</button>
+                </a>
             </div>
-            <button id="btn-reportar">Reportar</button>
-        </div>
 
-        <div id="mensajes">
-            <div class="mensaje recibido">Mensaje recibido
-                <span class="hora">12:03</span>
+            <div id="mensajes">
+                {% for mensaje in chat_seleccionado.mensajes.all %}
+                    <div class="mensaje {% if mensaje.autor == request.user %}enviado{% else %}recibido{% endif %}">
+                        {{ mensaje.contenido }}
+                        <span class="hora">{{ mensaje.enviado_en|date:"H:i" }}</span>
+                    </div>
+                {% empty %}
+                    <p>No hay mensajes en este chat.</p>
+                {% endfor %}
             </div>
-            <div class="mensaje enviado">Mensaje enviado
-                <span class="hora">12:04</span>
-            </div>
-            <div class="mensaje recibido">Mensaje recibido
-                <span class="hora">12:05</span>
-            </div>
-        </div>
 
-        <div id="caja-mensaje">
-            <input type="text" placeholder="Escribe un mensaje..."/>
-            <button>Enviar</button>
-        </div>
+            <div id="caja-mensaje">
+                <form method="post" action="{% url 'enviar_mensaje' chat_seleccionado.id %}">
+                    {% csrf_token %}
+                    <input type="text" name="contenido" placeholder="Escribe un mensaje..." required autocomplete="off"/>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+        {% else %}
+            <div id="principal-vacio">
+                <p>Selecciona un chat para ver los mensajes.</p>
+            </div>
+        {% endif %}
     </div>
-</div>
 
-</body>
-</html>
+</div>
+{% endblock %}

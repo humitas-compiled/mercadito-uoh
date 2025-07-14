@@ -1,14 +1,33 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from vender.models import Producto
+from chat.models import Chat
+from django.shortcuts import get_object_or_404, render, redirect
 from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
 def seccion_compras(request):
-    return render(request, 'compras/index.html')
+    productos = Producto.objects.filter(publicado=True).exclude(usuario=request.user)
+    return render(request, 'compras/index.html', {'productos': productos})
 
-"""@login_required
-def mis_productos(request):
-    return render(request, 'vender/templates/vender/mis_productos.html')  # asegúrate de tener esta plantilla"""
+def ver_producto(request, id):
+    producto = get_object_or_404(Producto, id=id)
+    return render(request, 'ver-producto/ver_producto.html', {'producto': producto})
 
-def ver_producto(request):
-    return render(request, 'ver-producto/ver_producto.html')
+@login_required
+def iniciar_chat(request, producto_id):
+    producto = get_object_or_404(Producto, id=producto_id)
+    
+    vendedor = producto.usuario  # El usuario que creó el producto
+
+    # Verifica si ya existe un chat para ese producto y comprador
+    chat = Chat.objects.filter(producto=producto, comprador=request.user).first()
+    if chat:
+        return redirect('mis_chats', chat_id=chat.id)
+
+    # Crear un nuevo chat, asignando vendedor y comprador
+    chat = Chat.objects.create(
+        producto=producto,
+        comprador=request.user,
+        vendedor=vendedor
+    )
+    return redirect('mis_chats', chat_id=chat.id)

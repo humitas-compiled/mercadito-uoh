@@ -18,9 +18,6 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
-"""from login import views as login_views #importa tu vista login_view
-from compras import views as compras_views
-from vender import views """
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,5 +25,6 @@ urlpatterns = [
     path('compras/', include('compras.urls')),
     path('vender/', include('vender.urls')),
     path('chats/', include('chat.urls')),
-    path('perfil/', include('perfil_user.urls'))
+    path('perfil/', include('perfil_user.urls')),
+    path('reporte/', include('reportes.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

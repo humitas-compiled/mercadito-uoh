@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Crear Producto - Mercadito UOH{% endblock %}
+
+{% block content %}
+<div class="contenido">
+    <div class="formulario">
+        <form class="crear-producto" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="imagen">
+                <!-- Contenedor de la imagen con navegación -->
+                <div class="preview-wrapper">
+                    <div class="preview-box">
+                        <img id="image_preview" src="{% static 'images/imagen-default.jpg' %}" alt="Previsualización">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de subida independiente -->
+            <label class="drop-container">
+                <input type="file" id="select_images" name="imagen" accept="image/*" />
+                <span class="drop-text">Añadir Imagen</span>
+            </label>
+            
+
+            <label>Nombre Producto
+                <input type="text" name="nombre" placeholder="Ingrese el nombre del producto" required/>
+            </label>
+
+            <label>Precio
+                <input type="number" name="precio" placeholder="Ingrese el precio del producto" required/>
+            </label>
+
+            <label>Descripción
+                <textarea name="descripcion" placeholder="Ingrese la descripción del producto" required></textarea>
+            </label>
+
+            <label>Campus
+                <select name="campus" required>
+                    <option value="" disabled selected>Seleccione Campus</option>
+                    <option value="rancagua">Campus Rancagua</option>
+                    <option value="colchagua">Campus Colchagua</option>
+                </select>
+            </label>
+
+            <label>Contacto
+                <input type="text" name="contacto" placeholder="Correo o teléfono" required />
+            </label>
+
+            <label>Categoría
+                <select name="categoria" required>
+                    <option value="" disabled selected>Seleccione Categoría</option>
+                    <option value="libros">Libros</option>
+                    <option value="electrónica">Electrónica</option>
+                    <option value="ropa">Ropa</option>
+                    <option value="otros">Otros</option>
+                </select>
+            </label>
+
+            <button type="submit" class="boton-confirmar">Confirmar</button>
+        </form>
+        <script src="{% static 'js/preview.js' %}"></script>
+    </div>
+</div>
+{% endblock %}

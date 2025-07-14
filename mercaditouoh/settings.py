@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'compras',
     'vender',
     'perfil_user.apps.PerfilUserConfig',
-    'chat'
+    'chat',
+    'reportes',
 ]
 
 MIDDLEWARE = [
