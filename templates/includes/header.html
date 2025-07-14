@@ -3,7 +3,7 @@
     <a href="{% url 'compras' %}">
         <div id="logo"></div>
     </a>
-    {% if request.resolver_match.url_name == 'compras' %}
+    {% if request.resolver_match.url_name == 'compras' %} <!-- Esto solo se mostrá en la sección de compras (una barra de busquedas)-->
         <div id="barra-busqueda">
             <form method="get" action="{% url 'compras' %}" class="buscador-compras">
                 <input type="search" name="q" placeholder="Buscar productos..." value="{{ request.GET.q }}">
