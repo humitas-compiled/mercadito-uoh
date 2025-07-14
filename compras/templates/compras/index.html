@@ -3,14 +3,17 @@
 
 {% block title %}Mercadito UOH - Comprar{% endblock %}
 
+<!-- Barra de busqueda de productos  -->
 {% block header_extra %}
     <form method="get" action="{% url 'compras' %}" class="buscador-compras">
         <input type="search" name="q" placeholder="Buscar productos..." value="{{ request.GET.q }}">
     </form>
 {% endblock %}
 
+<!-- Contenido principal pagina -->
 {% block content %}
 <article id="articulos">
+    <!-- Recorre todos los productos y los muestra con acceso a su informacion -->
     {% for producto in productos %}
     <a href="{% url 'ver_producto' producto.id %}" class="producto-link">
         <div id="articulo">
@@ -24,16 +27,17 @@
                 </div>
                 <div class="nombre_vendedor">{{ producto.usuario.username }}</div>
             </div>
-
+            <!-- Muestra la imagen del producto o un espacio vacio si no tiene imagen -->
             {% if producto.imagen %}
                 <img src="{{ producto.imagen.url }}" class="img_art_real" alt="{{ producto.nombre }}">
             {% else %}
                 <div class="img_art"></div>
             {% endif %}
-
+            <!-- Muestra nombre del producto y el precio -->
             <div class="nombre_art">{{ producto.nombre }} ${{ producto.precio }}</div>
         </div>
     </a>
+    <!-- Muestra mensaje si no hay productos -->
     {% empty %}
         <p>No hay productos disponibles en este momento.</p>
     {% endfor %}
