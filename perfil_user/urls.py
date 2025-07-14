@@ -1,6 +1,7 @@
 from django.urls import path
 from . import views
 
+#las direcciones a ocupar
 urlpatterns = [
     path('mi-perfil/', views.ver_perfil, name='ver_perfil'),
     path('editar-perfil/', views.editar_perfil, name='editar_perfil'),
